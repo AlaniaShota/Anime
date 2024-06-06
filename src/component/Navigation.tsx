@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { SearchBar } from "./Search";
 const links = [
   {
     id: 1,
@@ -43,8 +44,10 @@ export const Navigation = () => {
               ))}
             </div>
           )}
+        
         </div>
       ))}
+        <SearchBar />
     </div>
   );
 };

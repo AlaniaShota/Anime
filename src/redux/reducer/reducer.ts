@@ -76,6 +76,14 @@ export const fetchAnime = createAsyncThunk(
     }
 );
 
+export const searchAnime = createAsyncThunk(
+    "anime/searchAnime",
+    async (query: string) => {
+        const response = await axios.get(`https://api.jikan.moe/v4/anime?search=${query}`);
+        return response.data;
+    }
+);
+
 export const fetchTopAnime = createAsyncThunk(
     'topAnime/fetchTopAnime',
     async (_, { rejectWithValue }) => {

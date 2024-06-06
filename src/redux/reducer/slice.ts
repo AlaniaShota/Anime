@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { fetchAnime } from './reducer';
+import { fetchAnime, searchAnime } from './reducer';
 import { RootState } from '../store/store';
 import { Anime, AnimeState } from '../../interfaces';
 
@@ -26,6 +26,14 @@ const animeSlice = createSlice({
             .addCase(fetchAnime.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string || 'Unknown error';
+            })
+            .addCase(searchAnime.fulfilled, (state, action) => {
+                state.loading = false;
+                state.animeData = action.payload;
+            })
+            .addCase(searchAnime.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
             });
     },
 });

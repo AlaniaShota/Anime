@@ -17,12 +17,16 @@ export const routes = createBrowserRouter([
     path: "/",
     children: [
       { path: "/", element: <Home /> },
+      { path: "/search", element: <Home /> },
       {
         path: "/page/:pageNumber",
         element: <Home />,
       },
       { path: "/top-anime", element: <TopAnime /> },
-      { path: "/anime/:animeTitle/character/:characterId", element: <DetailAnimePage /> },
+      {
+        path: "/anime/:animeTitle/character/:characterId",
+        element: <DetailAnimePage />,
+      },
     ],
   },
 ]);

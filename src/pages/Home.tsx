@@ -24,8 +24,6 @@ export const Home = () => {
   const [currentPage, setCurrentPage] = useState(Number(pageNumber) || 1);
   const [filteredData, setFilteredData] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  console.log(searchResults);
-
   useEffect(() => {
     setCurrentPage(Number(pageNumber) || 1);
   }, [pageNumber]);
@@ -58,10 +56,9 @@ export const Home = () => {
 
   return (
     <div className="m-auto p-auto w-5/6">
-      {/* <SearchBar onSearch={handleSearch} /> */}
       {isSearching && <button onClick={handleClearSearch}>Clear Search</button>}
       <div className="grid grid-cols-4 w-full gap-4">
-        <CardList data={animeData ? animeData : searchResults} />
+        <CardList data={animeData ? animeData : searchResults} type="anime" />
       </div>
       {!isSearching && <Pagination handlePageChange={handlePageChange} />}
     </div>

@@ -5,11 +5,17 @@ import characterReducer from '../reducer/characterSlice';
 import reviewsSlice from '../reducer/reviewsSlice';
 import videoSlice from '../reducer/videoSlice';
 import searchSlice from '../reducer/searchSlice';
+import mangaReducer from '../reducer/manga/slice'
+import topMangaReducer from '../reducer/manga/topManga'
+import characterMangaSlice from '../reducer/manga/characterMangaSlice';
 
 const rootReducer = combineReducers({
     anime: animeReducer,
+    manga: mangaReducer,
     topAnime: topAnimeReducer,
+    topManga: topMangaReducer,
     character: characterReducer,
+    characterManga: characterMangaSlice,
     reviews: reviewsSlice,
     video: videoSlice,
     search: searchSlice

@@ -68,8 +68,7 @@ export const DetailAnimePage = () => {
     <div className="m-auto p-auto w-5/6 flex flex-col">
       {/* <div className="col-span-4 row-span-1"> */}
       <DetailHeaderSection
-        selectedAnime={selectedAnime}
-        characterData={characterData}
+        selected={selectedAnime}
       />
       {/* </div> */}
       <div className="flex flex-row items-start justify-start gap-8">

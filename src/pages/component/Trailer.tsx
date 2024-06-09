@@ -16,7 +16,6 @@ const TrailerItem = ({ trailer }) => (
 );
 
 export const Trailer = ({ video }) => {
-  console.log(video, "treiler");
 
   function notFoundData() {
     return (

@@ -4,13 +4,14 @@ import { Anime, TopAnime } from "../interfaces";
 
 interface CardListProps {
   data: (Anime | TopAnime)[];
+  type: 'anime' | 'manga';
 }
 
-export const CardList: React.FC<CardListProps> = ({ data }) => (
+export const CardList: React.FC<CardListProps> = ({ data, type }) => (
   <>
     {data?.map((item) => (
       <Link
-        to={`/anime/${item.title}/character/${item.mal_id}`}
+        to={`/${type}/${item.title}/character/${item.mal_id}`}
         key={item.mal_id}
         className="flex justify-between items-start flex-col bg-[#1D1340] rounded-md"
       >

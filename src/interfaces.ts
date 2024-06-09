@@ -17,10 +17,8 @@ export interface Anime {
 }
 
 
-export interface TopAnime {
-    id: string;
-    attributes: TopAnimeAttributes;
-}
+
+
 
 export interface AnimeAttributes {
     canonicalTitle: string;
@@ -33,10 +31,17 @@ export interface AnimeAttributes {
     description: string,
     youtubeVideoId: string
     // type: string
-    
     startDate: string
 }
-
+export interface TopAnime {
+    id: string;
+    attributes: TopAnimeAttributes;
+}
+export interface TopAnimeState {
+    topAnimeData: TopAnime[];
+    loading: boolean;
+    error: string | null;
+}
 export interface TopAnimeAttributes {
     canonicalTitle: string;
     coverImage: { large: string; medium: string, small: string, tiny: string, original: string },
@@ -51,18 +56,66 @@ export interface TopAnimeAttributes {
     ageRating: string
 }
 
+export interface RootState {
+    topAnime: TopAnimeState;
+}
+
 export interface AnimeState {
     animeData: Anime[];
     loading: boolean;
     error: string | null;
 }
 
-export interface TopAnimeState {
-    topAnimeData: TopAnime[];
-    loading: boolean;
-    error: string | null;
+
+
+
+interface CharacterAttributes {
+    canonicalName: string;
+    image: {
+        original: string;
+        large: string;
+        medium: string;
+        small: string;
+        tiny: string;
+    };
+    description: string;
 }
 
-export interface RootState {
-    topAnime: TopAnimeState;
+interface ReviewsAttributes {
+    canonicalName: string;
+    image: {
+        original: string;
+        large: string;
+        medium: string;
+        small: string;
+        tiny: string;
+    };
+    description: string;
+}
+
+interface VideoAttributes {
+    canonicalName: string;
+    image: {
+        original: string;
+        large: string;
+        medium: string;
+        small: string;
+        tiny: string;
+    };
+    description: string;
+}
+
+export interface Character {
+    id: string;
+    attributes: CharacterAttributes;
+}
+
+export interface Reviews {
+    id: string;
+    attributes: ReviewsAttributes;
+}
+
+export interface Video {
+    id: string;
+    attributes: VideoAttributes;
 }

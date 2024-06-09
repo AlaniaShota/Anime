@@ -26,7 +26,7 @@ export const TopAnime = () => {
   return (
     <div className="m-auto p-auto w-3/4 ">
       <div className="grid grid-cols-4 w-full gap-4">
-        <CardList data={topAnimeData} />
+        <CardList data={topAnimeData} type="anime"/>
       </div>
     </div>
   );

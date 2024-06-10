@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosRequestConfig } from 'axios';
-import { Anime, TopAnime, Character, Reviews, Video, Manga } from '../../../interfaces';
-import { TopManga } from './type';
+import { Character, Reviews } from '../../type/interfaces';
+import { TopManga, Manga, PictureManga } from './type';
 
 interface FetchMangaArgs {
     page: number;
@@ -41,12 +41,12 @@ const buildMangaUrl = ({ page, limit }: FetchMangaArgs) => `${__urlMANGA}manga?p
 const buildTopMangaUrl = () => `${__urlMANGA}top/manga`;
 const buildCharacterUrl = (characterId: string) => `${__urlMANGA}manga/${characterId}/characters`;
 const buildReviewsUrl = (characterId: string) => `${__urlMANGA}manga/${characterId}/reviews`;
-// const buildVideoUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/videos`;
+const buildPictureManga = (characterId: string) => `${__urlMANGA}manga/${characterId}/pictures`;
 
 // // Thunks
 export const fetchManga = createFetchThunk<Manga[], FetchMangaArgs>('manga/fetchManga', buildMangaUrl);
 // export const searchAnime = createFetchThunk<Anime[], string>('anime/searchAnime', buildSearchUrl);
 export const fetchTopManga = createFetchThunk<TopManga[], void>('topManga/fetchTopManga', buildTopMangaUrl);
 export const fetchCharacterManga = createFetchThunk<Character, string>('character/fetchCharacter', buildCharacterUrl);
-export const fetchReviews = createFetchThunk<Reviews, string>('reviews/fetchReviews', buildReviewsUrl);
-// export const fetchVideo = createFetchThunk<Video, string>('video/fetchVideo', buildVideoUrl);
+export const fetchReviewsManga = createFetchThunk<Reviews, string>('reviews/fetchReviews', buildReviewsUrl);
+export const fetchPictureManga = createFetchThunk<PictureManga, string>('picture/fetchPicture', buildPictureManga);

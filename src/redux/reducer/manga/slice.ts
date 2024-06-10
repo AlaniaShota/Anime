@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
-import { MangaState, Manga } from '../../../interfaces';
 import { fetchManga } from './mangaReducer';
+import { Manga, MangaState } from './type';
 
 const initialState: MangaState = {
     mangaData: [],

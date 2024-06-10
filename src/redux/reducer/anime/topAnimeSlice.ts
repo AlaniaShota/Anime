@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { TopAnime, TopAnimeState } from "./type";
 import { fetchTopAnime } from "./reducer";
-import { TopAnime, TopAnimeState } from "../../interfaces";
-import { RootState } from '../store/store';
+import { RootState } from "../../store/store";
 
 const initialState: TopAnimeState = {
     topAnimeData: [],

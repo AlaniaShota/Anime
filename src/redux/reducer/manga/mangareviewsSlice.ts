@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store/store';
-import { Character, Reviews, fetchCharacter, fetchReviews } from './reducer';
+import { RootState } from '../../store/store';
+import { Reviews } from '../../type/interfaces';
+import { fetchReviewsManga } from './mangaReducer';
+// import { Character, Reviews, fetchCharacter, fetchReviews } from './reducer';
 interface ReviewsState {
     reviewsData: Reviews | null;
     loading: boolean;
@@ -19,23 +21,23 @@ const reviewsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchReviews.pending, (state) => {
+            .addCase(fetchReviewsManga.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchReviews.fulfilled, (state, action: PayloadAction<Reviews>) => {
+            .addCase(fetchReviewsManga.fulfilled, (state, action: PayloadAction<Reviews>) => {
                 state.loading = false;
                 state.reviewsData = action.payload;
             })
-            .addCase(fetchReviews.rejected, (state, action) => {
+            .addCase(fetchReviewsManga.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string || 'Unknown error';
             });
     },
 });
 
-export const selectReviewsData = (state: RootState): Reviews | null => state.reviews.reviewsData;
-export const selectReviewsLoading = (state: RootState): boolean => state.reviews.loading;
-export const selectReviewsError = (state: RootState): string | null => state.reviews.error;
+export const selectReviewsMangaData = (state: RootState): Reviews | null => state.reviews.reviewsData;
+export const selectReviewsMangaLoading = (state: RootState): boolean => state.reviews.loading;
+export const selectReviewsMangaError = (state: RootState): string | null => state.reviews.error;
 
 export default reviewsSlice.reducer;

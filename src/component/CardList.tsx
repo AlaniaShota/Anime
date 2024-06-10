@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Anime, TopAnime } from "../interfaces";
+import { Anime, TopAnime } from "../redux/type/interfaces";
 
 interface CardListProps {
   data: (Anime | TopAnime)[];

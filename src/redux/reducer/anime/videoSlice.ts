@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store/store';
-import { Character, Reviews, Video, fetchCharacter, fetchReviews, fetchVideo } from './reducer';
+import { Video } from './type';
+import { fetchVideo } from './reducer';
+import { RootState } from '../../store/store';
+
 interface VideoState {
     videoData: Video | [];
     loading: boolean;

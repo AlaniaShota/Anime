@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../component/Button";
+import { Button } from "../../../component/Button";
 
 export const DetailHeaderSection = ({ selected }) => (
   <div className="flex flex-row w-full justify-start gap-8 ">

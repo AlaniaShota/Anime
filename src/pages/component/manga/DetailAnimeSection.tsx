@@ -1,6 +1,7 @@
 import React from "react";
+import { CharactersActors } from "../CharactersActors";
 
-export const DetailAnimeSection = ({ selected }) => {
+export const DetailAnimeSection = ({ selected, characterData }) => {
   return (
     <div className="flex flex-col justify-start items-start text-white gap-4 w-full">
       <div className="flex flex-col text-white border border-white/75 rounded-md p-4 w-full">
@@ -10,10 +11,6 @@ export const DetailAnimeSection = ({ selected }) => {
             <span>Type</span>
             <span>{selected.type}</span>
           </li>
-          {/* <li className="gap-2 flex items-center">
-            <span>Episodes</span>
-            <span>{selected.episodes}</span>
-          </li> */}
           <li className="gap-2 flex items-center">
             <span>Status</span>
             <span>{selected.status}</span>
@@ -72,10 +69,9 @@ export const DetailAnimeSection = ({ selected }) => {
           </li>
         </ul>
       </div>
-      <div className="w-full my-5">
-        <h1 className="font-extralight my-2">Characters & Voice Actors</h1>
-        {/* <CharactersActors characterData={characterData} /> */}
-      </div>
+      <>
+        <CharactersActors characterData={characterData} title="Characters" />
+      </>
     </div>
   );
 };

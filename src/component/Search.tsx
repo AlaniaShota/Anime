@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchAnime } from "../redux/reducer/reducer";
+import { searchAnime } from "../redux/reducer/anime/reducer";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -17,15 +17,17 @@ export const SearchBar: React.FC<SearchBarProps> = () => {
   };
 
   return (
-    <div className="mb-4">
-      <div>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
-    </div>
+    < >
+      {/* <div> */}
+      <input
+        className="border border-blue-400 rounded-lg p-1  font-medium "
+        placeholder="Search"
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button className="cursor-pointer" onClick={handleSearch}>Search</button>
+      {/* </div> */}
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 export const Button = () => (
   <div className="w-1/2 flex items-center ">
@@ -11,7 +12,7 @@ export const Button = () => (
   </div>
 );
 
-export const SeeMoreButton = ({  showMore }) => (
+export const SeeMoreButton = ({ showMore }) => (
   <div className="flex justify-center items-center w-full my-5">
     <button
       className="bg-[#c8144d]  px-4 py-2 cursor-pointer rounded-lg"
@@ -20,4 +21,13 @@ export const SeeMoreButton = ({  showMore }) => (
       <span className="text-white text-center text-lg">Show More</span>
     </button>
   </div>
+);
+
+export const ModalButton = ({ closeModal }) => (
+  <button
+    onClick={closeModal}
+    className="absolute top-2 right-2 text-black text-2xl border rounded-full bg-white p-2"
+  >
+    <AiOutlineClose color="black" />
+  </button>
 );

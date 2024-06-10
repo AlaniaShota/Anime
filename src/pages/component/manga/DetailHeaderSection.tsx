@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "../../../../component/Button";
+import { Button } from "../../../component/Button";
 
 export const DetailHeaderSection = ({ selected }) => {
-  console.log(selected);
+  // console.log(selected);
 
   return (
     <div className="flex flex-row w-full justify-start gap-8 ">

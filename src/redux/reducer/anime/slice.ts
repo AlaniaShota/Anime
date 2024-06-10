@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Anime, AnimeState } from './type';
 import { fetchAnime, searchAnime } from './reducer';
-import { RootState } from '../store/store';
-import { Anime, AnimeState } from '../../interfaces';
+import { RootState } from '../../store/store';
 
 const initialState: AnimeState = {
     animeData: [],

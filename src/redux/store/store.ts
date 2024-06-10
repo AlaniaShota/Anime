@@ -1,13 +1,15 @@
 import { configureStore, combineReducers, ThunkAction, Action } from '@reduxjs/toolkit';
-import animeReducer from '../reducer/slice';
-import topAnimeReducer from '../reducer/topAnimeSlice';
+import animeReducer from '../reducer/anime/slice';
+import topAnimeReducer from '../reducer/anime/topAnimeSlice';
 import characterReducer from '../reducer/characterSlice';
-import reviewsSlice from '../reducer/reviewsSlice';
-import videoSlice from '../reducer/videoSlice';
+import reviewsSlice from '../reducer/anime/reviewsSlice';
+import videoSlice from '../reducer/anime/videoSlice';
 import searchSlice from '../reducer/searchSlice';
 import mangaReducer from '../reducer/manga/slice'
 import topMangaReducer from '../reducer/manga/topManga'
 import characterMangaSlice from '../reducer/manga/characterMangaSlice';
+import pictureMangaSlice from '../reducer/manga/pictureMangaSlice';
+import genresSlice from '../reducer/anime/genresAnimeSlice'
 
 const rootReducer = combineReducers({
     anime: animeReducer,
@@ -18,7 +20,9 @@ const rootReducer = combineReducers({
     characterManga: characterMangaSlice,
     reviews: reviewsSlice,
     video: videoSlice,
-    search: searchSlice
+    search: searchSlice,
+    pictureManga: pictureMangaSlice,
+    genres: genresSlice
 });
 
 const store = configureStore({

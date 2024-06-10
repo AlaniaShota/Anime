@@ -1,27 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Button } from "../component/Button";
-import { selectAnimeData } from "../redux/reducer/slice";
-import { Anime, TopAnime } from "../interfaces";
-import { selectTopAnimeData } from "../redux/reducer/topAnimeSlice";
-import {
-  selectCharacterData,
-  selectCharacterError,
-  selectCharacterLoading,
-} from "../redux/reducer/characterSlice";
+import { selectAnimeData } from "../redux/reducer/anime/slice";
+import { selectCharacterData } from "../redux/reducer/characterSlice";
 import {
   fetchCharacter,
   fetchReviews,
   fetchVideo,
-} from "../redux/reducer/reducer";
-import { DetailHeaderSection } from "./component/DetailHeaderSection";
-import { DetailAnimeSection } from "./component/DetailAnimeSection";
-import { DetailAboutAnime } from "./component/DetailAboutAnime";
-import { Trailer } from "./component/Trailer";
-import { selectReviewsData } from "../redux/reducer/reviewsSlice";
+} from "../redux/reducer/anime/reducer";
+import { DetailAboutAnime } from "./component/anime/DetailAboutAnime";
+import { selectReviewsData } from "../redux/reducer/anime/reviewsSlice";
 import { UserReview } from "./component/UserReview";
-import { selectVideoData } from "../redux/reducer/videoSlice";
+import { DetailHeaderSection } from "./component/anime/DetailHeaderSection";
+import { DetailAnimeSection } from "./component/anime/DetailAnimeSection";
+import { selectTopAnimeData } from "../redux/reducer/anime/topAnimeSlice";
+import { selectVideoData } from "../redux/reducer/anime/videoSlice";
+import { Anime, TopAnime } from "../redux/reducer/anime/type";
 
 export const DetailAnimePage = () => {
   const { animeTitle, animeId, characterId } = useParams<{
@@ -66,24 +60,16 @@ export const DetailAnimePage = () => {
 
   return (
     <div className="m-auto p-auto w-5/6 flex flex-col">
-      {/* <div className="col-span-4 row-span-1"> */}
-      <DetailHeaderSection
-        selected={selectedAnime}
-      />
-      {/* </div> */}
+      <DetailHeaderSection selected={selectedAnime} />
       <div className="flex flex-row items-start justify-start gap-8">
         <div className=" my-5 w-3/12">
           <DetailAnimeSection
-            selectedAnime={selectedAnime}
+            selected={selectedAnime}
             characterData={characterData}
           />
         </div>
         <div className=" my-5 w-4/6">
-          <DetailAboutAnime
-            selectedAnime={selectedAnime}
-            video={video}
-            // characterData={characterData}
-          />
+          <DetailAboutAnime selectedAnime={selectedAnime} video={video} />
         </div>
       </div>
       <>

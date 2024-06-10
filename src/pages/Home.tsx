@@ -5,8 +5,8 @@ import {
   selectAnimeData,
   selectAnimeError,
   selectAnimeLoading,
-} from "../redux/reducer/slice";
-import { fetchAnime, searchAnime } from "../redux/reducer/reducer";
+} from "../redux/reducer/anime/slice";
+import { fetchAnime, searchAnime } from "../redux/reducer/anime/reducer";
 import { Pagination } from "../component/Pagination";
 import { CardList } from "../component/CardList";
 import { LoadedCardList } from "../component/LoadedCardList";

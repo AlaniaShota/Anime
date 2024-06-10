@@ -1,5 +1,5 @@
 import React from "react";
-import { CharactersActors } from "./CharactersActors";
+import { CharactersActors } from "../CharactersActors";
 
 export const DetailAnimeSection = ({ selected, characterData }) => (
   <div className="flex flex-col justify-start items-start text-white gap-4 w-full">
@@ -8,62 +8,62 @@ export const DetailAnimeSection = ({ selected, characterData }) => (
       <ul className="flex flex-col items-start gap-1  text-sm py-1">
         <li className="gap-2 flex items-center">
           <span>Type</span>
-          <span>{selectedAnime.type}</span>
+          <span>{selected.type}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Episodes</span>
-          <span>{selectedAnime.episodes}</span>
+          <span>{selected.episodes}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Status</span>
-          <span>{selectedAnime.status}</span>
+          <span>{selected.status}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Aired</span>
-          <span>{selectedAnime.aired.from.slice("", 4)}</span>
+          <span>{selected.aired.from.slice("", 4)}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Premiered</span>
-          <span className="capitalize">{selectedAnime.season}</span>
+          <span className="capitalize">{selected.season}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Broadcast</span>
-          <span>{selectedAnime.broadcast.string}</span>
+          <span>{selected.broadcast.string}</span>
         </li>
-        {selectedAnime?.producers?.[0]?.name && (
+        {selected?.producers?.[0]?.name && (
           <li className="gap-2 flex items-center">
             <span>Producers</span>
-            <span>{selectedAnime.producers[0].name}</span>
+            <span>{selected.producers[0].name}</span>
           </li>
         )}
-        {selectedAnime?.licensors?.[0]?.name && (
+        {selected?.licensors?.[0]?.name && (
           <li className="gap-2 flex items-center">
             <span>Licensors</span>
-            <span>{selectedAnime.licensors[0].name}</span>
+            <span>{selected.licensors[0].name}</span>
           </li>
         )}
-        {selectedAnime?.studios?.[0]?.name && (
+        {selected?.studios?.[0]?.name && (
           <li className="gap-2 flex items-center">
             <span>Studios</span>
-            <span>{selectedAnime.studios[0].name}</span>
+            <span>{selected.studios[0].name}</span>
           </li>
         )}
 
         <li className="gap-2 flex items-center">
           <span>Source</span>
-          <span>{selectedAnime.source}</span>
+          <span>{selected.source}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Genres</span>
           <>
-            {selectedAnime.genres.slice("", 3).map((item) => (
+            {selected.genres.slice("", 3).map((item) => (
               <span key={item.mal_id}>{item.name}</span>
             ))}
           </>
         </li>
         <li className="gap-2 flex items-center">
           <span>Duration</span>
-          <span>{selectedAnime.duration.slice("", 7)}</span>
+          <span>{selected.duration.slice("", 7)}</span>
         </li>
       </ul>
     </div>
@@ -72,29 +72,31 @@ export const DetailAnimeSection = ({ selected, characterData }) => (
       <ul className="flex flex-col items-start gap-1 text-sm py-1">
         <li className="gap-2 flex items-center">
           <span>Score</span>
-          <span className="text-[#ffd700]">{selectedAnime.score}</span>
+          <span className="text-[#ffd700]">{selected.score}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Ranked</span>
-          <span className="text-[#ffd700]">{selectedAnime.rank}</span>
+          <span className="text-[#ffd700]">{selected.rank}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Popularity</span>
-          <span className="text-[#ffd700]">{selectedAnime.popularity}</span>
+          <span className="text-[#ffd700]">{selected.popularity}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Members</span>
-          <span className="text-[#ffd700]">{selectedAnime.members}</span>
+          <span className="text-[#ffd700]">{selected.members}</span>
         </li>
         <li className="gap-2 flex items-center">
           <span>Favorites</span>
-          <span className="text-[#ffd700]">{selectedAnime.favorites}</span>
+          <span className="text-[#ffd700]">{selected.favorites}</span>
         </li>
       </ul>
     </div>
-    <div className="w-full my-5">
-      <h1 className="font-extralight my-2">Characters & Voice Actors</h1>
-      <CharactersActors characterData={characterData} />
-    </div>
+    <>
+      <CharactersActors
+        characterData={characterData}
+        title="Characters & Voice Actors"
+      />
+    </>
   </div>
 );

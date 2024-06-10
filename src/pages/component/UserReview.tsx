@@ -18,6 +18,7 @@ export const UserReview = ({ reviews }) => {
   if (!reviews || reviews.length === 0) {
     return null;
   }
+// console.log(reviews);
 
   return (
     <>

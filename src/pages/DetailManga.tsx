@@ -1,36 +1,41 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectMangaData } from "../../../redux/reducer/manga/slice";
-import { selectTopMangaData } from "../../../redux/reducer/manga/topManga";
-import { fetchCharacter } from "../../../redux/reducer/reducer";
-import { Manga, TopManga } from "../../../redux/reducer/manga/type";
-import { selectCharacterData } from "../../../redux/reducer/characterSlice";
-import { selectCharacterMangaData } from "../../../redux/reducer/manga/characterMangaSlice";
-import { fetchCharacterManga } from "../../../redux/reducer/manga/mangaReducer";
-import { DetailAnimeSection } from "./component/DetailAnimeSection";
-import { DetailHeaderSection } from "./component/DetailHeaderSection";
+import { selectMangaData } from "../redux/reducer/manga/slice";
+import { selectTopMangaData } from "../redux/reducer/manga/topManga";
+import { Manga, TopManga } from "../redux/reducer/manga/type";
+import { selectCharacterMangaData } from "../redux/reducer/manga/characterMangaSlice";
+import {
+  fetchCharacterManga,
+  fetchPictureManga,
+  fetchReviewsManga,
+} from "../redux/reducer/manga/mangaReducer";
+import { DetailAnimeSection } from "./component/manga/DetailAnimeSection";
+import { selectReviewsMangaData } from "../redux/reducer/manga/mangareviewsSlice";
+import { UserReview } from "./component/UserReview";
+import { selectPictureMangaData } from "../redux/reducer/manga/pictureMangaSlice";
+import { DetailHeaderSection } from "./component/manga/DetailHeaderSection";
+import { PictureSection } from "./component/manga/PictureSection";
 
 export const DetailManga = () => {
-  const { mangaTitle, animeId, characterId } = useParams<{
+  const { mangaTitle, characterId } = useParams<{
     mangaTitle: string;
     characterId: string;
     animeId: string;
   }>();
-  console.log("mangaTitle", mangaTitle);
 
   const dispatch = useDispatch();
   const mangaData = useSelector(selectMangaData);
   const topMangaData = useSelector(selectTopMangaData);
   const characterData = useSelector(selectCharacterMangaData);
-  //   const video = useSelector(selectVideoData);
-  //   const reviews = useSelector(selectReviewsData);
+  const picture = useSelector(selectPictureMangaData);
+  const reviews = useSelector(selectReviewsMangaData);
 
   useEffect(() => {
     if (characterId) {
       dispatch(fetchCharacterManga(characterId));
-      //   dispatch(fetchVideo(characterId));
-      //   dispatch(fetchReviews(characterId));
+      dispatch(fetchPictureManga(characterId));
+      dispatch(fetchReviewsManga(characterId));
     }
   }, [characterId, dispatch]);
 
@@ -54,9 +59,8 @@ export const DetailManga = () => {
 
   return (
     <div className="m-auto p-auto w-5/6 flex flex-col">
-      {/* <div className="col-span-4 row-span-1"> */}
       <DetailHeaderSection selected={selectedManga} />
-      {/* </div> */}
+
       <div className="flex flex-row items-start justify-start gap-8">
         <div className=" my-5 w-3/12">
           <DetailAnimeSection
@@ -64,15 +68,13 @@ export const DetailManga = () => {
             characterData={characterData}
           />
         </div>
-        {/* <div className=" my-5 w-4/6">
-            <DetailAboutAnime
-              selectedAnime={selectedAnime}
-              video={video}
-              // characterData={characterData}
-            />
-          </div> */}
+        <div className=" my-5 w-4/6">
+          <PictureSection picture={picture} />
+        </div>
       </div>
-      <>{/* <UserReview reviews={reviews} /> */}</>
+      <>
+        <UserReview reviews={reviews} />
+      </>
     </div>
   );
 };

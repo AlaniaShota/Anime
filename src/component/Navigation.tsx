@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchBar } from "./Search";
+import { Genres } from "./Genres";
 const links = [
   {
     id: 1,
@@ -28,7 +29,7 @@ export const Navigation = () => {
   return (
     <div className="flex flex-row justify-start items-start gap-8 my-8 mx-auto p-auto w-3/4 ">
       {links.map((link) => (
-        <div key={link.id} className="p-2 w-[110px]">
+        <div key={link.id} className="p-2 w-[150px]">
           <span
             className="text-white text-lg uppercase font-extralight cursor-pointer"
             onClick={() => handleLinkClick(link.id, link.url)}
@@ -44,10 +45,12 @@ export const Navigation = () => {
               ))}
             </div>
           )}
-        
         </div>
       ))}
+      <div className="flex flex-row justify-end items-center w-full gap-4">
+        <Genres />
         <SearchBar />
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Character } from '../type/interfaces';
+import { fetchCharacter } from './anime/reducer';
 import { RootState } from '../store/store';
-import { Character, fetchCharacter } from './reducer';
 interface CharacterState {
     characterData: Character | null;
     loading: boolean;

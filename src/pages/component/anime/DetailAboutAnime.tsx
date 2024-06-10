@@ -1,8 +1,6 @@
 import React from "react";
 import { Trailer } from "./Trailer";
-import { CharactersActors } from "./CharactersActors";
 import { Episodes } from "./Episodes";
-import { ErrorData } from "./ErrorData";
 
 export const DetailAboutAnime = ({ selectedAnime, video }) => (
   <div className="w-full text-white my-1 p-2 flex flex-col justify-start items-start">

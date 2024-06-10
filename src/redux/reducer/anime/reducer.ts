@@ -1,12 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosRequestConfig } from 'axios';
-import { Anime, TopAnime, Character, Reviews, Video } from '../../interfaces';
+import { Anime, TopAnime, Video } from './type';
+import { Character, Genres, Reviews } from '../../type/interfaces';
 
 interface FetchAnimeArgs {
     page: number;
     limit: number;
 }
 const __urlANIME = 'https://api.jikan.moe/v4/'
+
 // General fetch function
 const fetchData = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
     try {
@@ -41,6 +43,7 @@ const buildTopAnimeUrl = () => `${__urlANIME}top/anime`;
 const buildCharacterUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/characters`;
 const buildReviewsUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/reviews`;
 const buildVideoUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/videos`;
+const buildGenres = () => `${__urlANIME}genres/anime`;
 
 // Thunks
 export const fetchAnime = createFetchThunk<Anime[], FetchAnimeArgs>('anime/fetchAnime', buildAnimeUrl);
@@ -49,3 +52,4 @@ export const fetchTopAnime = createFetchThunk<TopAnime[], void>('topAnime/fetchT
 export const fetchCharacter = createFetchThunk<Character, string>('character/fetchCharacter', buildCharacterUrl);
 export const fetchReviews = createFetchThunk<Reviews, string>('reviews/fetchReviews', buildReviewsUrl);
 export const fetchVideo = createFetchThunk<Video, string>('video/fetchVideo', buildVideoUrl);
+export const fetchGenres = createFetchThunk<Genres, string>('genres/fetchGenres', buildGenres);

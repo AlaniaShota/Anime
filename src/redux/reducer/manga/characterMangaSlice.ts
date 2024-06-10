@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
 
 import { fetchCharacterManga } from './mangaReducer';
-import { Character } from '../../../interfaces';
+import { Character } from '../../type/interfaces';
 interface CharacterState {
     characterData: Character | null;
     loading: boolean;

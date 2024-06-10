@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SeeMoreButton } from "../../component/Button";
+import { SeeMoreButton } from "../../../component/Button";
 import { MdErrorOutline } from "react-icons/md";
 
 const AnimationPulseError = ({ sizeW, sizeH }) => (

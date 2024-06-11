@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchBar } from "./Search";
-import { Genres } from "./Genres";
+// import { Genres } from "./Genres";
 const links = [
   {
     id: 1,
@@ -39,16 +39,16 @@ export const Navigation = () => {
           {activeLink === link.id && (
             <div className="flex flex-col items-start">
               {link.src.map((sublink) => (
-                <a href={sublink.url} key={sublink.id}>
+                <Link to={sublink.url} key={sublink.id}>
                   <span className="text-white text-lg">{sublink.title}</span>
-                </a>
+                </Link>
               ))}
             </div>
           )}
         </div>
       ))}
       <div className="flex flex-row justify-end items-center w-full gap-4">
-        <Genres />
+        {/* <Genres /> */}
         <SearchBar />
       </div>
     </div>

@@ -37,13 +37,13 @@ const createFetchThunk = <Returned, ThunkArg>(
 };
 
 // URL builders
-const buildAnimeUrl = ({ page, limit }: FetchAnimeArgs) => `${__urlANIME}anime?page=${page}&limit=${limit}`;
+export const buildAnimeUrl = ({ page, limit }: FetchAnimeArgs) => `${__urlANIME}anime?page=${page}&limit=${limit}`;
 const buildSearchUrl = (query: string) => `${__urlANIME}anime?search=${query}`;
 const buildTopAnimeUrl = () => `${__urlANIME}top/anime`;
 const buildCharacterUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/characters`;
 const buildReviewsUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/reviews`;
 const buildVideoUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/videos`;
-const buildGenres = () => `${__urlANIME}genres/anime`;
+// const buildGenres = () => `${__urlANIME}genres/anime`;
 
 // Thunks
 export const fetchAnime = createFetchThunk<Anime[], FetchAnimeArgs>('anime/fetchAnime', buildAnimeUrl);
@@ -52,4 +52,4 @@ export const fetchTopAnime = createFetchThunk<TopAnime[], void>('topAnime/fetchT
 export const fetchCharacter = createFetchThunk<Character, string>('character/fetchCharacter', buildCharacterUrl);
 export const fetchReviews = createFetchThunk<Reviews, string>('reviews/fetchReviews', buildReviewsUrl);
 export const fetchVideo = createFetchThunk<Video, string>('video/fetchVideo', buildVideoUrl);
-export const fetchGenres = createFetchThunk<Genres, string>('genres/fetchGenres', buildGenres);
+// export const fetchGenres = createFetchThunk<Genres, string>('genres/fetchGenres', buildGenres);

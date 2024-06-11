@@ -1,19 +1,21 @@
 export interface Manga {
+    // id: string;
     id: string;
-    attributes: MangaAttributes;
+    title: string; // Добавлено свойство title
+    mal_id: string;
+    images: { webp: { large_image_url: string } };
+    type: string;
+    titles: [{ title: string }]; // Обновлено определение titles
+    episodes: string;
 }
 
 export interface MangaAttributes {
-    canonicalTitle: string;
-    coverImage: { large: string; medium: string, small: string, tiny: string, original: string, },
-    posterImage: { large: string; medium: string, small: string, tiny: string, original: string, };
-    showType: string;
-    episodeCount: number;
     title: string,
-    averageRating: string,
-    description: string,
-    youtubeVideoId: string
-    startDate: string
+    mal_id: string,
+    images: { webp: { large_image_url: string } },
+    type: string,
+    titles: [title: string]
+    episodes: string
 }
 
 export interface MangaState {
@@ -24,7 +26,13 @@ export interface MangaState {
 
 export interface TopManga {
     id: string;
-    attributes: MangaAttributes;
+    // id: string;
+    title: string; // Добавлено свойство title
+    mal_id: string;
+    images: { webp: { large_image_url: string } };
+    type: string;
+    titles: [{ title: string }]; // Обновлено определение titles
+    episodes: string;
 }
 export interface TopMangaState {
     topMangaData: TopManga[];

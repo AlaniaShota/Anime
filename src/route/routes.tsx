@@ -7,7 +7,7 @@ import { Layout } from "../component/Layout";
 import { ScrollToTop } from "../component/ScrollToTop";
 import { Manga } from "../pages/Manga";
 import { TopManga } from "../pages/TopManga";
-import {DetailManga} from '../pages/DetailManga'
+import { DetailManga } from "../pages/DetailManga";
 
 export const routes = createBrowserRouter([
   {

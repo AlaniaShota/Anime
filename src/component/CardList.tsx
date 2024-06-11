@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Anime, TopAnime } from "../redux/type/interfaces";
+import { Anime, TopAnime } from "../redux/reducer/anime/type";
+import { Manga, TopManga } from "../redux/reducer/manga/type";
 
 interface CardListProps {
-  data: (Anime | TopAnime)[];
-  type: 'anime' | 'manga';
+  data: (Anime | TopAnime | Manga | TopManga)[];
+  type: "anime" | "manga";
 }
 
 export const CardList: React.FC<CardListProps> = ({ data, type }) => (
@@ -19,17 +20,24 @@ export const CardList: React.FC<CardListProps> = ({ data, type }) => (
           <img
             src={item?.images?.webp.large_image_url}
             alt={item?.title}
-            className="w-full h-full  rounded-t-md"
+            className={`${
+              type === "anime" ? "  rounded-t-md" : "rounded-md"
+            } w-full h-full `}
           />
           <div className="absolute top-0 right-0 bg-[#c8144d] bg-opacity-75  px-2 py-1 m-3 text-sm rounded-lg ">
             <span className="text-white">Type: {item?.type}</span>
           </div>
         </div>
-        <div className="flex flex-col justify-start items-start m-2 w-auto ">
-          <h1 className="text-lg text-white">{item?.titles[0].title}</h1>
-          <span className="my-4 text-[#ffd700]"> Episode {item?.episodes}</span>
-          <span className="text-white opacity-75">SUB | DUB</span>
-        </div>
+        {type === "anime" && (
+          <div className="flex flex-col justify-start items-start m-2 w-auto ">
+            <h1 className="text-lg text-white">{item?.titles[0].title}</h1>
+            <span className="my-4 text-[#ffd700]">
+              {" "}
+              Episode {item?.episodes}
+            </span>
+            <span className="text-white opacity-75">SUB | DUB</span>
+          </div>
+        )}
       </Link>
     ))}
   </>

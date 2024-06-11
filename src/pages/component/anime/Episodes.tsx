@@ -26,7 +26,10 @@ const EpisodeList = ({ video, visibleEpisodes, showMoreEpisodes }) => (
 
 const EpisodeItem = ({ episode }) => (
   <>
-    <div key={episode.mal_id} className="flex flex-col flex-wrap">
+    <div
+      key={episode.mal_id}
+      className="flex flex-col flex-wrap cursor-not-allowed"
+    >
       {episode.images.jpg.image_url ? (
         <img src={episode.images.jpg.image_url} alt={episode.title} />
       ) : (
@@ -43,6 +46,7 @@ export const Episodes = ({ video }) => {
   const showMoreEpisodes = () => {
     setVisibleEpisodes((prevVisibleEpisodes) => prevVisibleEpisodes + 10);
   };
+console.log(video);
 
   function notFoundData() {
     return (

@@ -24,6 +24,7 @@ export const Home = () => {
   const [currentPage, setCurrentPage] = useState(Number(pageNumber) || 1);
   const [filteredData, setFilteredData] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+
   useEffect(() => {
     setCurrentPage(Number(pageNumber) || 1);
   }, [pageNumber]);

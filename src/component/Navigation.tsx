@@ -68,7 +68,7 @@ export const Navigation = () => {
           )}
         </div>
       ))}
-      <div className="flex flex-row justify-end items-center w-full gap-4">
+      <div className="flex flex-row justify-end items-center w-full gap-4 p-2">
         {/* <Genres /> */}
         <SearchBar onSearch={handleSearch} />
       </div>

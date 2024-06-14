@@ -16,6 +16,8 @@ import { UserReview } from "./component/UserReview";
 import { selectPictureMangaData } from "../redux/reducer/manga/pictureMangaSlice";
 import { DetailHeaderSection } from "./component/manga/DetailHeaderSection";
 import { PictureSection } from "./component/manga/PictureSection";
+import { selectCharacterIdData } from "../redux/reducer/characterIdSlice";
+import { fetchCharacterId } from "../redux/reducer/anime/reducer";
 
 export const DetailManga = () => {
   const { mangaTitle, characterId } = useParams<{
@@ -28,12 +30,14 @@ export const DetailManga = () => {
   const mangaData = useSelector(selectMangaData);
   const topMangaData = useSelector(selectTopMangaData);
   const characterData = useSelector(selectCharacterMangaData);
+  const characterDataId = useSelector(selectCharacterIdData);
   const picture = useSelector(selectPictureMangaData);
   const reviews = useSelector(selectReviewsMangaData);
 
   useEffect(() => {
     if (characterId) {
       dispatch(fetchCharacterManga(characterId));
+      dispatch(fetchCharacterId(characterId));
       dispatch(fetchPictureManga(characterId));
       dispatch(fetchReviewsManga(characterId));
     }
@@ -53,6 +57,9 @@ export const DetailManga = () => {
 
   const selectedManga = getSelectedManga();
 
+  const filteredCharacterData = characterData.filter(
+    (character) => character.character.mal_id !== characterDataId?.mal_id
+  );
   if (!selectedManga) {
     return <div className="text-white">Manga not found</div>;
   }
@@ -66,6 +73,7 @@ export const DetailManga = () => {
           <DetailAnimeSection
             selected={selectedManga}
             characterData={characterData}
+            characterDataId={characterDataId}
           />
         </div>
         <div className=" my-5 w-4/6">

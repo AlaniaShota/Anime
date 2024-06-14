@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
 import { ModalButton } from "../../../component/Button";
 
 export const PictureSection = ({ picture }) => {
@@ -14,7 +13,7 @@ export const PictureSection = ({ picture }) => {
   };
 
   return (
-    <div>
+    <>
       <div className="flex flex-row flex-wrap justify-center items-center gap-2">
         {picture.map((img, index) => (
           <div
@@ -44,6 +43,6 @@ export const PictureSection = ({ picture }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };

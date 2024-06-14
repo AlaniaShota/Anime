@@ -46,7 +46,6 @@ export const Episodes = ({ video }) => {
   const showMoreEpisodes = () => {
     setVisibleEpisodes((prevVisibleEpisodes) => prevVisibleEpisodes + 10);
   };
-console.log(video);
 
   function notFoundData() {
     return (

@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { ModalButton } from "../../component/Button";
+import { ImportantCharacter } from "./ImportantCharacter";
 
-export const CharactersActors = ({ characterData, title }) => {
+const View = ({ selectedImage, closeModal }) => (
+  <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-75">
+    <div className="relative w-1/4 h-auto ">
+      <img
+        src={selectedImage}
+        alt="Character Picture"
+        className="w-full h-full object-contain "
+      />
+      <ModalButton closeModal={closeModal} />
+    </div>
+  </div>
+);
+
+export const CharactersActors = ({ characterData, title, characterDataId }) => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const openModal = (character) => {
+    setSelectedImage(character);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   if (!characterData || characterData.length === 0) {
     return <div>No character data available</div>;
   }
@@ -9,52 +34,35 @@ export const CharactersActors = ({ characterData, title }) => {
     <div className="w-full my-5">
       <h1 className="font-extralight my-2">{title}</h1>
       <div className="grid grid-cols-3 gap-2">
-        {characterData
-          .slice(0, 9)
-          .map(({ character, role, favorites, voice_actors }) => (
-            <div
-              key={character.mal_id}
-              className="flex flex-row items-start justify-start w-full"
-            >
-              <div className="flex flex-col w-full">
-                <div className="w-auto h-52">
-                  <img
-                    src={character.images.webp.image_url}
-                    alt={character.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col my-1">
-                  <a
-                    href={character.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="uppercase text-sm font-light"
-                  >
-                    {character.name.slice()}
-                  </a>
-                  {/* <span className="my-1 text-sm">Role {role}</span>
-                <span className=" text-sm">Favorites: {favorites}</span> */}
-                </div>
-              </div>
-              {/* <div className="voice-actors">
-            {voice_actors.map((actor) => (
-              <div key={actor.mal_id} className="voice-actor">
+        <div className="border border-[#ffd700] ">
+          <ImportantCharacter characterDataId={characterDataId} />
+        </div>
+        {characterData.slice(0, 8).map((item) => (
+          <div
+            key={item.character.mal_id}
+            className="flex flex-row items-start justify-start w-full"
+          >
+            <div className="flex flex-col h-64 w-full opacity-50 hover:opacity-100 transition duration-700 ease-in-out">
+              <div
+                className="w-full h-52 "
+                onClick={() => openModal(item.character.images.webp.image_url)}
+              >
                 <img
-                  src={actor.person.images.jpg.image_url}
-                  alt={actor.name}
-                  className="voice-actor-image"
+                  src={item.character.images.webp.image_url}
+                  alt={item.character.name}
+                  className="w-full h-full object-cover cursor-pointer"
                 />
-                <div className="voice-actor-details">
-                  <span className="voice-actor-name">{actor.person.name}</span>
-                  <span className="voice-actor-language">{actor.language}</span>
-                </div>
               </div>
-            ))}
-          </div> */}
+              <p className="uppercase p-1 text-xs font-mono cursor-default ">
+                {item.character.name}
+              </p>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
+      {selectedImage && (
+        <View selectedImage={selectedImage} closeModal={closeModal} />
+      )}
     </div>
   );
 };

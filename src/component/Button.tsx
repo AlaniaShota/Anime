@@ -25,7 +25,10 @@ export const SeeMoreButton = ({ showMore }) => (
 
 export const ModalButton = ({ closeModal }) => (
   <button
-    onClick={closeModal}
+    onClick={(e) => {
+      e.stopPropagation();
+      closeModal();
+    }}
     className="absolute top-2 right-2 text-black text-2xl border rounded-full bg-white p-2"
   >
     <AiOutlineClose color="black" />

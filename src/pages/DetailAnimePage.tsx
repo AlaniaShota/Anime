@@ -5,6 +5,7 @@ import { selectAnimeData } from "../redux/reducer/anime/slice";
 import { selectCharacterData } from "../redux/reducer/characterSlice";
 import {
   fetchCharacter,
+  fetchCharacterId,
   fetchReviews,
   fetchVideo,
 } from "../redux/reducer/anime/reducer";
@@ -16,24 +17,26 @@ import { DetailAnimeSection } from "./component/anime/DetailAnimeSection";
 import { selectTopAnimeData } from "../redux/reducer/anime/topAnimeSlice";
 import { selectVideoData } from "../redux/reducer/anime/videoSlice";
 import { Anime, TopAnime } from "../redux/reducer/anime/type";
+import { selectCharacterIdData } from "../redux/reducer/characterIdSlice";
 
 export const DetailAnimePage = () => {
-  const { animeTitle, animeId, characterId } = useParams<{
+  const { animeTitle, characterId } = useParams<{
     animeTitle: string;
     characterId: string;
-    animeId: string;
   }>();
 
   const dispatch = useDispatch();
   const animeData = useSelector(selectAnimeData);
   const topAnimeData = useSelector(selectTopAnimeData);
   const characterData = useSelector(selectCharacterData);
+  const characterDataId = useSelector(selectCharacterIdData);
   const video = useSelector(selectVideoData);
   const reviews = useSelector(selectReviewsData);
 
   useEffect(() => {
     if (characterId) {
       dispatch(fetchCharacter(characterId));
+      dispatch(fetchCharacterId(characterId));
       dispatch(fetchVideo(characterId));
       dispatch(fetchReviews(characterId));
     }
@@ -53,7 +56,10 @@ export const DetailAnimePage = () => {
   };
 
   const selectedAnime = getSelectedAnime();
-
+  const filteredCharacterData = characterData.filter(
+    (character) => character.character.mal_id !== characterDataId?.mal_id
+  );
+  
   if (!selectedAnime) {
     return <div className="text-white">Anime not found</div>;
   }
@@ -65,7 +71,8 @@ export const DetailAnimePage = () => {
         <div className=" my-5 w-3/12">
           <DetailAnimeSection
             selected={selectedAnime}
-            characterData={characterData}
+            characterData={filteredCharacterData}
+            characterDataId={characterDataId}
           />
         </div>
         <div className=" my-5 w-4/6">

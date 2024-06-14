@@ -9,6 +9,7 @@ import mangaReducer from '../reducer/manga/slice'
 import topMangaReducer from '../reducer/manga/topManga'
 import characterMangaSlice from '../reducer/manga/characterMangaSlice';
 import pictureMangaSlice from '../reducer/manga/pictureMangaSlice';
+import characterIdSlice from '../reducer/characterIdSlice';
 // import genresSlice from '../reducer/anime/genresAnimeSlice'
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     topManga: topMangaReducer,
     character: characterReducer,
     characterManga: characterMangaSlice,
+    characterId: characterIdSlice,
     reviews: reviewsSlice,
     video: videoSlice,
     search: searchReducer,

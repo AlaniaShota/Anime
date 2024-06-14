@@ -45,7 +45,10 @@ interface ReviewsAttributes {
     description: string;
 }
 
-
+export interface CharacterId {
+    id: string;
+    attributes: CharacterAttributes;
+}
 export interface Character {
     id: string;
     attributes: CharacterAttributes;

@@ -1,7 +1,11 @@
 import React from "react";
 import { CharactersActors } from "../CharactersActors";
 
-export const DetailAnimeSection = ({ selected, characterData }) => {
+export const DetailAnimeSection = ({
+  selected,
+  characterData,
+  characterDataId,
+}) => {
   return (
     <div className="flex flex-col justify-start items-start text-white gap-4 w-full">
       <div className="flex flex-col text-white border border-white/75 rounded-md p-4 w-full">
@@ -70,7 +74,11 @@ export const DetailAnimeSection = ({ selected, characterData }) => {
         </ul>
       </div>
       <>
-        <CharactersActors characterData={characterData} title="Characters" />
+        <CharactersActors
+          characterDataId={characterDataId}
+          characterData={characterData}
+          title="Characters"
+        />
       </>
     </div>
   );

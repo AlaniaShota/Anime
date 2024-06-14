@@ -3,13 +3,13 @@ import { Character } from '../type/interfaces';
 import { fetchCharacter } from './anime/reducer';
 import { RootState } from '../store/store';
 interface CharacterState {
-    characterData: Character | null;
+    characterData: Character | [];
     loading: boolean;
     error: string | null;
 }
 
 const initialState: CharacterState = {
-    characterData: null,
+    characterData: [],
     loading: false,
     error: null,
 };
@@ -35,7 +35,7 @@ const characterSlice = createSlice({
     },
 });
 
-export const selectCharacterData = (state: RootState): Character | null => state.character.characterData;
+export const selectCharacterData = (state: RootState): Character | [] => state.character.characterData;
 export const selectCharacterLoading = (state: RootState): boolean => state.character.loading;
 export const selectCharacterError = (state: RootState): string | null => state.character.error;
 

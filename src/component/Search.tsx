@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchAnime } from "../redux/reducer/anime/reducer";
+import { Link } from "react-router-dom";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = () => {
-  const dispatch = useDispatch();
+export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
     if (query.trim() !== "") {
-      dispatch(searchAnime(query));
+      onSearch(query);
     }
   };
 
   return (
-    < >
-      {/* <div> */}
+    <>
       <input
         className="border border-blue-400 rounded-lg p-1  font-medium "
         placeholder="Search"
@@ -26,8 +24,9 @@ export const SearchBar: React.FC<SearchBarProps> = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button className="cursor-pointer" onClick={handleSearch}>Search</button>
-      {/* </div> */}
+      <button className="cursor-pointer text-white" onClick={handleSearch}>
+        <Link to="/search">Search</Link>
+      </button>
     </>
   );
 };

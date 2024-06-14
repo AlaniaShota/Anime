@@ -38,7 +38,7 @@ const createFetchThunk = <Returned, ThunkArg>(
 
 // URL builders
 export const buildAnimeUrl = ({ page, limit }: FetchAnimeArgs) => `${__urlANIME}anime?page=${page}&limit=${limit}`;
-const buildSearchUrl = (query: string) => `${__urlANIME}anime?search=${query}`;
+const buildSearchUrl = (query: string) => `${__urlANIME}anime/search?q=${query}`;
 const buildTopAnimeUrl = () => `${__urlANIME}top/anime`;
 const buildCharacterUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/characters`;
 const buildReviewsUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/reviews`;

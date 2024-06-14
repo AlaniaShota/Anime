@@ -4,7 +4,7 @@ import topAnimeReducer from '../reducer/anime/topAnimeSlice';
 import characterReducer from '../reducer/characterSlice';
 import reviewsSlice from '../reducer/anime/reviewsSlice';
 import videoSlice from '../reducer/anime/videoSlice';
-import searchSlice from '../reducer/searchSlice';
+import searchReducer from '../reducer/searchSlice';
 import mangaReducer from '../reducer/manga/slice'
 import topMangaReducer from '../reducer/manga/topManga'
 import characterMangaSlice from '../reducer/manga/characterMangaSlice';
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
     characterManga: characterMangaSlice,
     reviews: reviewsSlice,
     video: videoSlice,
-    search: searchSlice,
+    search: searchReducer,
     pictureManga: pictureMangaSlice,
     // genres: genresSlice
 });

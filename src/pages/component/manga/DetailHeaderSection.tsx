@@ -46,9 +46,8 @@ export const DetailHeaderSection = ({ selected }) => {
           <h4 className="text-[#ffd700] text-lg">{selected.authors[0].name}</h4>
         </div>
         <p className="text-base font-extralight my-2 w-3/4">
-          {selected.synopsis.slice("", 170)}...
+          {selected.synopsis}
         </p>
-        <Button />
       </div>
     </div>
   );

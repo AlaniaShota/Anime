@@ -8,6 +8,8 @@ import { ScrollToTop } from "../component/ScrollToTop";
 import { Manga } from "../pages/Manga";
 import { TopManga } from "../pages/TopManga";
 import { DetailManga } from "../pages/DetailManga";
+import { SearchBar } from "../component/Search";
+import { SearchPage } from "../pages/SearchPage";
 
 export const routes = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ export const routes = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/manga", element: <Manga /> },
-      { path: "/search", element: <Home /> },
+      { path: "/search", element: <SearchPage /> },
       {
         path: "/page/:pageNumberAnime",
         element: <Home />,

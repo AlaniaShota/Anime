@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchBar } from "./Search";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAnimeData } from "../redux/reducer/anime/slice";
+import { selectMangaData } from "../redux/reducer/manga/slice";
+import {
+  setFilteredData,
+  setIsSearching,
+  setSearchQuery,
+} from "../redux/reducer/searchSlice";
 // import { Genres } from "./Genres";
 const links = [
   {
@@ -19,13 +27,26 @@ const links = [
 
 export const Navigation = () => {
   const [activeLink, setActiveLink] = useState<number | null>(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const animeData = useSelector(selectAnimeData);
+  const mangaData = useSelector(selectMangaData);
 
   const handleLinkClick = (id: number, url: string) => {
     setActiveLink(id === activeLink ? null : id);
     navigate(url);
   };
-
+  const handleSearch = (query: string) => {
+    dispatch(setSearchQuery(query));
+    const filteredAnime = animeData.filter((item) =>
+      item.title.toLowerCase().includes(query.toLowerCase())
+    );
+    const filteredManga = mangaData.filter((item) =>
+      item.title.toLowerCase().includes(query.toLowerCase())
+    );
+    dispatch(setFilteredData([...filteredAnime, ...filteredManga]));
+    dispatch(setIsSearching(true));
+  };
   return (
     <div className="flex flex-row justify-start items-start gap-8 my-8 mx-auto p-auto w-3/4 ">
       {links.map((link) => (
@@ -49,7 +70,7 @@ export const Navigation = () => {
       ))}
       <div className="flex flex-row justify-end items-center w-full gap-4">
         {/* <Genres /> */}
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
       </div>
     </div>
   );

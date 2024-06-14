@@ -21,23 +21,26 @@ export const CardList: React.FC<CardListProps> = ({ data, type }) => (
             src={item?.images?.webp.large_image_url}
             alt={item?.title}
             className={`${
-              type === "anime" ? "  rounded-t-md" : "rounded-md"
+              type === "anime" ? "  rounded-t-md" : "rounded-t-md"
             } w-full h-full `}
           />
           <div className="absolute top-0 right-0 bg-[#c8144d] bg-opacity-75  px-2 py-1 m-3 text-sm rounded-lg ">
             <span className="text-white">Type: {item?.type}</span>
           </div>
         </div>
-        {type === "anime" && (
-          <div className="flex flex-col justify-start items-start m-2 w-auto ">
-            <h1 className="text-lg text-white">{item?.titles[0].title}</h1>
-            <span className="my-4 text-[#ffd700]">
-              {" "}
-              Episode {item?.episodes}
-            </span>
-            <span className="text-white opacity-75">SUB | DUB</span>
-          </div>
-        )}
+
+        <div className="flex flex-col justify-start items-start m-2 w-auto ">
+          <h1 className="text-lg text-white">{item?.titles[0].title}</h1>
+          {type === "anime" && (
+            <>
+              <span className="my-4 text-[#ffd700]">
+                {" "}
+                Episode {item?.episodes}
+              </span>
+              <span className="text-white opacity-75">SUB | DUB</span>
+            </>
+          )}
+        </div>
       </Link>
     ))}
   </>

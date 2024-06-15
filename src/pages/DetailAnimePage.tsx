@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectAnimeData } from "../redux/reducer/anime/slice";
-import { selectCharacterData } from "../redux/reducer/characterSlice";
+import {
+  selectAnimeData,
+  selectAnimeLoading,
+} from "../redux/reducer/anime/slice";
+import {
+  selectCharacterData,
+  selectCharacterLoading,
+} from "../redux/reducer/characterSlice";
 import {
   fetchCharacter,
   fetchCharacterId,
@@ -14,24 +20,41 @@ import { selectReviewsData } from "../redux/reducer/anime/reviewsSlice";
 import { UserReview } from "./component/UserReview";
 import { DetailHeaderSection } from "./component/anime/DetailHeaderSection";
 import { DetailAnimeSection } from "./component/anime/DetailAnimeSection";
-import { selectTopAnimeData } from "../redux/reducer/anime/topAnimeSlice";
-import { selectVideoData } from "../redux/reducer/anime/videoSlice";
+import {
+  selectTopAnimeData,
+  selectTopAnimeLoading,
+} from "../redux/reducer/anime/topAnimeSlice";
+import {
+  selectVideoData,
+  selectVideoLoading,
+} from "../redux/reducer/anime/videoSlice";
 import { Anime, TopAnime } from "../redux/reducer/anime/type";
-import { selectCharacterIdData } from "../redux/reducer/characterIdSlice";
+import {
+  selectCharacterIdData,
+  selectCharacterIdLoading,
+} from "../redux/reducer/characterIdSlice";
+import { DetailPageLoader } from "../component/Loader";
+import { useAppDispatch } from "../redux/store/store";
 
-export const DetailAnimePage = () => {
+export const DetailAnimePage: React.FC = () => {
   const { animeTitle, characterId } = useParams<{
     animeTitle: string;
     characterId: string;
   }>();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const animeData = useSelector(selectAnimeData);
   const topAnimeData = useSelector(selectTopAnimeData);
   const characterData = useSelector(selectCharacterData);
   const characterDataId = useSelector(selectCharacterIdData);
   const video = useSelector(selectVideoData);
   const reviews = useSelector(selectReviewsData);
+  const animeDataLoader = useSelector(selectAnimeLoading);
+  const topAnimeDataLoader = useSelector(selectTopAnimeLoading);
+  const characterDataLoader = useSelector(selectCharacterLoading);
+  const characterDataIdLoader = useSelector(selectCharacterIdLoading);
+  const videoLoader = useSelector(selectVideoLoading);
+  const reviewsLoader = useSelector(selectVideoLoading);
 
   useEffect(() => {
     if (characterId) {
@@ -41,6 +64,17 @@ export const DetailAnimePage = () => {
       dispatch(fetchReviews(characterId));
     }
   }, [characterId, dispatch]);
+
+  if (
+    animeDataLoader ||
+    topAnimeDataLoader ||
+    characterDataLoader ||
+    characterDataIdLoader ||
+    videoLoader ||
+    reviewsLoader
+  ) {
+    return <DetailPageLoader />;
+  }
 
   const getSelectedAnime = () => {
     switch (true) {
@@ -54,12 +88,16 @@ export const DetailAnimePage = () => {
         return null;
     }
   };
+  console.log(characterDataId);
 
   const selectedAnime = getSelectedAnime();
-  const filteredCharacterData = characterData.filter(
-    (character) => character.character.mal_id !== characterDataId?.mal_id
-  );
-  
+
+  const filteredCharacterData = Array.isArray(characterData)
+    ? characterData.filter(
+        (character) => character.character.mal_id !== characterDataId[0]?.mal_id
+      )
+    : [];
+    
   if (!selectedAnime) {
     return <div className="text-white">Anime not found</div>;
   }

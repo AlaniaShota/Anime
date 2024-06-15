@@ -1,12 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Character } from '../type/interfaces';
+import { Character, CharacterState } from '../type/interfaces';
 import { fetchCharacter } from './anime/reducer';
 import { RootState } from '../store/store';
-interface CharacterState {
-    characterData: Character | [];
-    loading: boolean;
-    error: string | null;
-}
 
 const initialState: CharacterState = {
     characterData: [],
@@ -24,7 +19,7 @@ const characterSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchCharacter.fulfilled, (state, action: PayloadAction<Character>) => {
+            .addCase(fetchCharacter.fulfilled, (state, action: PayloadAction<Character[]>) => {
                 state.loading = false;
                 state.characterData = action.payload;
             })
@@ -35,7 +30,7 @@ const characterSlice = createSlice({
     },
 });
 
-export const selectCharacterData = (state: RootState): Character | [] => state.character.characterData;
+export const selectCharacterData = (state: RootState): Character[] => state.character.characterData;
 export const selectCharacterLoading = (state: RootState): boolean => state.character.loading;
 export const selectCharacterError = (state: RootState): string | null => state.character.error;
 

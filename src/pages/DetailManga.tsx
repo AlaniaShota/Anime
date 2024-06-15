@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectMangaData } from "../redux/reducer/manga/slice";
-import { selectTopMangaData } from "../redux/reducer/manga/topManga";
+import {
+  selectMangaData,
+  selectMangaLoading,
+} from "../redux/reducer/manga/slice";
+import {
+  selectTopMangaData,
+  selectTopMangaLoading,
+} from "../redux/reducer/manga/topManga";
 import { Manga, TopManga } from "../redux/reducer/manga/type";
 import { selectCharacterMangaData } from "../redux/reducer/manga/characterMangaSlice";
 import {
@@ -11,28 +17,49 @@ import {
   fetchReviewsManga,
 } from "../redux/reducer/manga/mangaReducer";
 import { DetailAnimeSection } from "./component/manga/DetailAnimeSection";
-import { selectReviewsMangaData } from "../redux/reducer/manga/mangareviewsSlice";
+import {
+  selectReviewsMangaData,
+  selectReviewsMangaLoading,
+} from "../redux/reducer/manga/mangareviewsSlice";
 import { UserReview } from "./component/UserReview";
-import { selectPictureMangaData } from "../redux/reducer/manga/pictureMangaSlice";
+import {
+  selectPictureMangaData,
+  selectPictureMangaLoading,
+} from "../redux/reducer/manga/pictureMangaSlice";
 import { DetailHeaderSection } from "./component/manga/DetailHeaderSection";
 import { PictureSection } from "./component/manga/PictureSection";
-import { selectCharacterIdData } from "../redux/reducer/characterIdSlice";
+import {
+  selectCharacterIdData,
+  selectCharacterIdLoading,
+} from "../redux/reducer/characterIdSlice";
 import { fetchCharacterId } from "../redux/reducer/anime/reducer";
+import { DetailPageLoader } from "../component/Loader";
+import { selectReviewsError } from "../redux/reducer/anime/reviewsSlice";
+import { useAppDispatch } from "../redux/store/store";
 
-export const DetailManga = () => {
+export const DetailManga: React.FC = () => {
   const { mangaTitle, characterId } = useParams<{
     mangaTitle: string;
     characterId: string;
     animeId: string;
   }>();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const mangaData = useSelector(selectMangaData);
   const topMangaData = useSelector(selectTopMangaData);
   const characterData = useSelector(selectCharacterMangaData);
   const characterDataId = useSelector(selectCharacterIdData);
   const picture = useSelector(selectPictureMangaData);
   const reviews = useSelector(selectReviewsMangaData);
+  const mangaDataLoader = useSelector(selectMangaLoading);
+  const topMangaDataLoader = useSelector(selectTopMangaLoading);
+  const characterDataLoader = useSelector(selectReviewsMangaLoading);
+  const characterDataIdLoader = useSelector(selectCharacterIdLoading);
+  const pictureLoader = useSelector(selectPictureMangaLoading);
+  const reviewsLoader = useSelector(selectReviewsMangaLoading);
+  const reviewsError = useSelector(selectReviewsError);
+  //უნდა ვიმუშაო error
+  console.log(reviewsError);
 
   useEffect(() => {
     if (characterId) {
@@ -57,11 +84,25 @@ export const DetailManga = () => {
 
   const selectedManga = getSelectedManga();
 
-  const filteredCharacterData = characterData.filter(
-    (character) => character.character.mal_id !== characterDataId?.mal_id
-  );
+  const filteredCharacterData = Array.isArray(characterData)
+    ? characterData.filter(
+        (character) => character.character.mal_id !== characterDataId[0]?.mal_id
+      )
+    : [];
+
   if (!selectedManga) {
     return <div className="text-white">Manga not found</div>;
+  }
+
+  if (
+    mangaDataLoader ||
+    topMangaDataLoader ||
+    characterDataLoader ||
+    characterDataIdLoader ||
+    pictureLoader ||
+    reviewsLoader
+  ) {
+    return <DetailPageLoader />;
   }
 
   return (
@@ -72,7 +113,7 @@ export const DetailManga = () => {
         <div className=" my-5 w-3/12">
           <DetailAnimeSection
             selected={selectedManga}
-            characterData={characterData}
+            characterData={filteredCharacterData}
             characterDataId={characterDataId}
           />
         </div>

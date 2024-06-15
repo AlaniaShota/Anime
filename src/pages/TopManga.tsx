@@ -7,7 +7,7 @@ import {
 } from "../redux/reducer/manga/topManga";
 import { AppDispatch } from "../redux/store/store";
 import { fetchTopManga } from "../redux/reducer/manga/mangaReducer";
-import { LoadedCardList } from "../component/LoadedCardList";
+import { LoadedCardList } from "../component/Loader";
 import { CardList } from "../component/CardList";
 
 export const TopManga = () => {

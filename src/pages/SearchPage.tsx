@@ -10,16 +10,17 @@ export const SearchPage = () => {
   const handleClearSearch = () => {
     dispatch(clearSearch());
   };
+
   const determineType = (item) => {
     if ("episodes" in item) {
       return "anime";
     }
     return "manga";
   };
-  console.log(filteredData);
+
   return (
     <div className="m-auto p-auto w-5/6">
-      {isSearching && <button onClick={handleClearSearch}>Clear Search</button>}
+      {/* {isSearching && <button className="text-white" onClick={handleClearSearch}>Clear Search</button>} */}
       <div className="grid grid-cols-4 w-full gap-4">
         {filteredData.map((item) => (
           <CardList

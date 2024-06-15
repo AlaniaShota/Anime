@@ -7,7 +7,7 @@ import {
 } from "../redux/reducer/manga/slice";
 import { fetchManga } from "../redux/reducer/manga/mangaReducer";
 import { CardList } from "../component/CardList";
-import { LoadedCardList } from "../component/LoadedCardList";
+import { LoadedCardList } from "../component/Loader";
 
 import { AppDispatch } from "../redux/store/store";
 import { Pagination } from "../component/Pagination";

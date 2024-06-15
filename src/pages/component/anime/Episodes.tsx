@@ -13,7 +13,7 @@ const AnimationPulseError = ({ sizeW, sizeH }) => (
 const EpisodeList = ({ video, visibleEpisodes, showMoreEpisodes }) => (
   <>
     <h1 className="font-extralight text-2xl mb-2">Episodes</h1>
-    <div className="grid grid-cols-4 items-center gap-2">
+    <div className="grid grid-cols-4 items-center gap-2 w-full">
       {video.episodes.slice(0, visibleEpisodes).map((episode) => (
         <EpisodeItem episode={episode} key={episode.mal_id} />
       ))}
@@ -25,19 +25,17 @@ const EpisodeList = ({ video, visibleEpisodes, showMoreEpisodes }) => (
 );
 
 const EpisodeItem = ({ episode }) => (
-  <>
-    <div
-      key={episode.mal_id}
-      className="flex flex-col flex-wrap cursor-not-allowed"
-    >
-      {episode.images.jpg.image_url ? (
-        <img src={episode.images.jpg.image_url} alt={episode.title} />
-      ) : (
-        <AnimationPulseError sizeW="48" sizeH="48" />
-      )}
-      <h1>{episode.episode}</h1>
-    </div>
-  </>
+  <div
+    key={episode.mal_id}
+    className="flex flex-col flex-wrap cursor-not-allowed opacity-70 hover:opacity-100 transition duration-700 ease-in-out"
+  >
+    {episode.images.jpg.image_url ? (
+      <img src={episode.images.jpg.image_url} alt={episode.title} />
+    ) : (
+      <AnimationPulseError sizeW="60" sizeH="60" />
+    )}
+    <h1>{episode.episode}</h1>
+  </div>
 );
 
 export const Episodes = ({ video }) => {

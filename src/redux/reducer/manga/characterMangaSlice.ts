@@ -2,15 +2,10 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
 
 import { fetchCharacterManga } from './mangaReducer';
-import { Character } from '../../type/interfaces';
-interface CharacterState {
-    characterData: Character | null;
-    loading: boolean;
-    error: string | null;
-}
+import { Character, CharacterState } from '../../type/interfaces';
 
 const initialState: CharacterState = {
-    characterData: null,
+    characterData: [],
     loading: false,
     error: null,
 };
@@ -25,7 +20,7 @@ const characterMangaSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchCharacterManga.fulfilled, (state, action: PayloadAction<Character>) => {
+            .addCase(fetchCharacterManga.fulfilled, (state, action: PayloadAction<Character[]>) => {
                 state.loading = false;
                 state.characterData = action.payload;
             })
@@ -36,7 +31,7 @@ const characterMangaSlice = createSlice({
     },
 });
 
-export const selectCharacterMangaData = (state: RootState): Character | null => state.character.characterData;
+export const selectCharacterMangaData = (state: RootState): Character[] => state.character.characterData;
 export const selectCharacterMangaLoading = (state: RootState): boolean => state.character.loading;
 export const selectCharacterMangaError = (state: RootState): string | null => state.character.error;
 

@@ -10,6 +10,7 @@ import topMangaReducer from '../reducer/manga/topManga'
 import characterMangaSlice from '../reducer/manga/characterMangaSlice';
 import pictureMangaSlice from '../reducer/manga/pictureMangaSlice';
 import characterIdSlice from '../reducer/characterIdSlice';
+import { useDispatch } from 'react-redux';
 // import genresSlice from '../reducer/anime/genresAnimeSlice'
 
 const rootReducer = combineReducers({
@@ -33,11 +34,6 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export type AppThunk<ReturnType = void> = ThunkAction<
-    ReturnType,
-    RootState,
-    unknown,
-    Action<string>
->;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export default store;

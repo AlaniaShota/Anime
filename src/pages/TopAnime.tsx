@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { CardList } from "../component/CardList";
-import { LoadedCardList } from "../component/LoadedCardList";
+import { LoadedCardList } from "../component/Loader";
 import { fetchTopAnime } from "../redux/reducer/anime/reducer";
 import { AppDispatch } from "../redux/store/store";
 import {

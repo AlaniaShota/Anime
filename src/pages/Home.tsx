@@ -9,9 +9,8 @@ import {
 import { fetchAnime, searchAnime } from "../redux/reducer/anime/reducer";
 import { Pagination } from "../component/Pagination";
 import { CardList } from "../component/CardList";
-import { LoadedCardList } from "../component/LoadedCardList";
+import { LoadedCardList } from "../component/Loader";
 import { AppDispatch } from "../redux/store/store";
-import { SearchBar } from "../component/Search";
 
 export const Home = () => {
   const dispatch: AppDispatch = useDispatch();

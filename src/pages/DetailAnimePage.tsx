@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
   selectAnimeData,
+  selectAnimeError,
   selectAnimeLoading,
 } from "../redux/reducer/anime/slice";
 import {
   selectCharacterData,
+  selectCharacterError,
   selectCharacterLoading,
 } from "../redux/reducer/characterSlice";
 import {
@@ -22,19 +24,23 @@ import { DetailHeaderSection } from "./component/anime/DetailHeaderSection";
 import { DetailAnimeSection } from "./component/anime/DetailAnimeSection";
 import {
   selectTopAnimeData,
+  selectTopAnimeError,
   selectTopAnimeLoading,
 } from "../redux/reducer/anime/topAnimeSlice";
 import {
   selectVideoData,
+  selectVideoError,
   selectVideoLoading,
 } from "../redux/reducer/anime/videoSlice";
 import { Anime, TopAnime } from "../redux/reducer/anime/type";
 import {
   selectCharacterIdData,
+  selectCharacterIdError,
   selectCharacterIdLoading,
 } from "../redux/reducer/characterIdSlice";
 import { DetailPageLoader } from "../component/Loader";
 import { useAppDispatch } from "../redux/store/store";
+import { ErrorDataFound, ErrorDetailTitle } from "../component/Error";
 
 export const DetailAnimePage: React.FC = () => {
   const { animeTitle, characterId } = useParams<{
@@ -88,7 +94,6 @@ export const DetailAnimePage: React.FC = () => {
         return null;
     }
   };
-  console.log(characterDataId);
 
   const selectedAnime = getSelectedAnime();
 
@@ -97,10 +102,8 @@ export const DetailAnimePage: React.FC = () => {
         (character) => character.character.mal_id !== characterDataId[0]?.mal_id
       )
     : [];
-    
-  if (!selectedAnime) {
-    return <div className="text-white">Anime not found</div>;
-  }
+
+  if (!selectedAnime) return <ErrorDetailTitle title="Anime" src="/" />;
 
   return (
     <div className="m-auto p-auto w-5/6 flex flex-col">
@@ -111,6 +114,7 @@ export const DetailAnimePage: React.FC = () => {
             selected={selectedAnime}
             characterData={filteredCharacterData}
             characterDataId={characterDataId}
+            type='anime'
           />
         </div>
         <div className=" my-5 w-4/6">

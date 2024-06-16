@@ -16,7 +16,7 @@ const ViewModal = ({ importantCharacter, closeModal }) => (
       <span className=" font-extralight">
         Favorites: {importantCharacter.favorites}
       </span>
-      <p className=" overflow-y-auto h-96 font-light mt-4">
+      <p className=" overflow-y-auto h-96 font-light mt-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-300">
         {importantCharacter.about}
       </p>
     </div>

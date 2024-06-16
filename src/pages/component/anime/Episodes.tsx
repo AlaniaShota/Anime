@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { SeeMoreButton } from "../../../component/Button";
 import { MdErrorOutline } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { selectVideoError } from "../../../redux/reducer/anime/videoSlice";
+import { ErrorDataFound } from "../../../component/Error";
 
 const AnimationPulseError = ({ sizeW, sizeH }) => (
   <div
@@ -40,26 +43,16 @@ const EpisodeItem = ({ episode }) => (
 
 export const Episodes = ({ video }) => {
   const [visibleEpisodes, setVisibleEpisodes] = useState(12);
+  const videoError = useSelector(selectVideoError);
 
   const showMoreEpisodes = () => {
     setVisibleEpisodes((prevVisibleEpisodes) => prevVisibleEpisodes + 10);
   };
 
-  function notFoundData() {
-    return (
-      <div className="flex flex-col w-full my-4 justify-start items-start">
-        <h1 className="font-extralight text-2xl mb-2">Something went wrong</h1>
-        <div className="grid grid-cols-3 w-full gap-4 items-center ">
-          <AnimationPulseError sizeW="64" sizeH="64" />
-          <AnimationPulseError sizeW="64" sizeH="64" />
-          <AnimationPulseError sizeW="64" sizeH="64" />
-          <AnimationPulseError sizeW="64" sizeH="64" />
-          <AnimationPulseError sizeW="64" sizeH="64" />
-          <AnimationPulseError sizeW="64" sizeH="64" />
-        </div>
-      </div>
-    );
-  }
+  const notFoundData = () => {
+    if (!videoError) return <ErrorDataFound title="episodes" />;
+    // return null;
+  };
 
   return (
     <div className="flex flex-col w-full my-4 justify-start items-start">

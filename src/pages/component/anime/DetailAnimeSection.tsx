@@ -5,6 +5,7 @@ export const DetailAnimeSection = ({
   selected,
   characterData,
   characterDataId,
+  type
 }) => (
   <div className="flex flex-col justify-start items-start text-white gap-4 w-full">
     <div className="flex flex-col text-white border border-white/75 rounded-md p-4 w-full">
@@ -101,6 +102,7 @@ export const DetailAnimeSection = ({
         characterData={characterData}
         characterDataId={characterDataId}
         title="Characters & Voice Actors"
+        type={type}
       />
     </>
   </div>

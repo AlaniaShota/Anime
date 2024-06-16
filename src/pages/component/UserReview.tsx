@@ -7,18 +7,26 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { BsEmojiLaughing } from "react-icons/bs";
 import { BsEmojiSunglasses } from "react-icons/bs";
 import { SeeMoreButton } from "../../component/Button";
+import { useSelector } from "react-redux";
+import { selectReviewsError } from "../../redux/reducer/anime/reviewsSlice";
+import { ErrorDataFound } from "../../component/Error";
+import {
+  selectReviewsMangaError,
+  selectReviewsMangaLoading,
+} from "../../redux/reducer/manga/mangareviewsSlice";
 
 export const UserReview = ({ reviews }) => {
   const [userReview, setUserReview] = useState(3);
+  const reviewsError = useSelector(selectReviewsError);
+  const reviewMangaError = useSelector(selectReviewsMangaError);
+  const reviewLoader = useSelector(selectReviewsMangaLoading);
 
   const showMoreReview = () => {
     setUserReview((review) => review + 5);
   };
 
-  if (!reviews || reviews.length === 0) {
-    return null;
-  }
-  // console.log(reviews);
+  if (reviewsError || reviewMangaError)
+    return <ErrorDataFound title="reviews" />;
 
   return (
     <>

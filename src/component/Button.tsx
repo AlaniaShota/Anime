@@ -1,5 +1,6 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export const Button = () => (
   <div className="w-1/2 flex items-center ">
@@ -33,4 +34,13 @@ export const ModalButton = ({ closeModal }) => (
   >
     <AiOutlineClose color="black" />
   </button>
+);
+
+export const ButtonGoBack = ({ title, src }) => (
+  <Link
+    to={src}
+    className="border border-[#ffd700] rounded-md px-4 py-2 bg-transparent hover:bg-[#ffd700] text-[#ffd700]  hover:text-black transition duration-700 ease-in-out"
+  >
+    <span className="text-lg font-bold">Back To {title}</span>
+  </Link>
 );

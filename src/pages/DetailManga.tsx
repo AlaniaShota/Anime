@@ -36,6 +36,7 @@ import { fetchCharacterId } from "../redux/reducer/anime/reducer";
 import { DetailPageLoader } from "../component/Loader";
 import { selectReviewsError } from "../redux/reducer/anime/reviewsSlice";
 import { useAppDispatch } from "../redux/store/store";
+import { ErrorDetailTitle } from "../component/Error";
 
 export const DetailManga: React.FC = () => {
   const { mangaTitle, characterId } = useParams<{
@@ -90,9 +91,7 @@ export const DetailManga: React.FC = () => {
       )
     : [];
 
-  if (!selectedManga) {
-    return <div className="text-white">Manga not found</div>;
-  }
+  if (!selectedManga) return <ErrorDetailTitle title="Manga" src='/manga'/>;
 
   if (
     mangaDataLoader ||

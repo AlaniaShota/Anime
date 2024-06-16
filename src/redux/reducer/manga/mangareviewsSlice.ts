@@ -1,16 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
-import { Reviews } from '../../type/interfaces';
+import { Reviews, ReviewsState } from '../../type/interfaces';
 import { fetchReviewsManga } from './mangaReducer';
-// import { Character, Reviews, fetchCharacter, fetchReviews } from './reducer';
-interface ReviewsState {
-    reviewsData: Reviews | null;
-    loading: boolean;
-    error: string | null;
-}
 
 const initialState: ReviewsState = {
-    reviewsData: null,
+    reviewsData: [],
     loading: false,
     error: null,
 };
@@ -25,7 +19,7 @@ const reviewsSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchReviewsManga.fulfilled, (state, action: PayloadAction<Reviews>) => {
+            .addCase(fetchReviewsManga.fulfilled, (state, action: PayloadAction<Reviews[]>) => {
                 state.loading = false;
                 state.reviewsData = action.payload;
             })
@@ -36,7 +30,7 @@ const reviewsSlice = createSlice({
     },
 });
 
-export const selectReviewsMangaData = (state: RootState): Reviews | null => state.reviews.reviewsData;
+export const selectReviewsMangaData = (state: RootState): Reviews[] => state.reviews.reviewsData;
 export const selectReviewsMangaLoading = (state: RootState): boolean => state.reviews.loading;
 export const selectReviewsMangaError = (state: RootState): string | null => state.reviews.error;
 

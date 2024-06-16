@@ -48,5 +48,5 @@ export const fetchManga = createFetchThunk<Manga[], FetchMangaArgs>('manga/fetch
 // export const searchAnime = createFetchThunk<Anime[], string>('anime/searchAnime', buildSearchUrl);
 export const fetchTopManga = createFetchThunk<TopManga[], void>('topManga/fetchTopManga', buildTopMangaUrl);
 export const fetchCharacterManga = createFetchThunk<Character[], string>('character/fetchCharacter', buildCharacterUrl);
-export const fetchReviewsManga = createFetchThunk<Reviews, string>('reviews/fetchReviews', buildReviewsUrl);
+export const fetchReviewsManga = createFetchThunk<Reviews[], string>('reviews/fetchReviews', buildReviewsUrl);
 export const fetchPictureManga = createFetchThunk<PictureManga, string>('picture/fetchPicture', buildPictureManga);

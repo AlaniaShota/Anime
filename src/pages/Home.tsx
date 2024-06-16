@@ -11,6 +11,7 @@ import { Pagination } from "../component/Pagination";
 import { CardList } from "../component/CardList";
 import { LoadedCardList } from "../component/Loader";
 import { AppDispatch } from "../redux/store/store";
+import { ErrorCard } from "../component/Error";
 
 export const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -35,7 +36,7 @@ export const Home = () => {
   };
 
   if (loading) return <LoadedCardList />;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <ErrorCard />;
 
   return (
     <div className="m-auto p-auto w-5/6">

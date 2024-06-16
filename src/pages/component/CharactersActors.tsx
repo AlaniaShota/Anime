@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { ModalButton } from "../../component/Button";
 import { ImportantCharacter } from "./ImportantCharacter";
+import { Character, CharacterId } from "../../redux/type/interfaces";
+import { useSelector } from "react-redux";
+import { selectCharacterError } from "../../redux/reducer/characterSlice";
+
+interface CharacterProps {
+  characterData: Character;
+  title: string;
+  characterDataId: CharacterId;
+  type: "anime" | "manga";
+}
 
 const View = ({ selectedImage, closeModal }) => (
   <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-75">
@@ -15,8 +25,14 @@ const View = ({ selectedImage, closeModal }) => (
   </div>
 );
 
-export const CharactersActors = ({ characterData, title, characterDataId }) => {
+export const CharactersActors: React.FC<CharacterProps> = ({
+  characterData,
+  title,
+  characterDataId,
+  type,
+}) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const characterError = useSelector(selectCharacterError);
 
   const openModal = (character) => {
     setSelectedImage(character);
@@ -26,7 +42,7 @@ export const CharactersActors = ({ characterData, title, characterDataId }) => {
     setSelectedImage(null);
   };
 
-  if (!characterData || characterData.length === 0) {
+  if (characterError) {
     return <div>No character data available</div>;
   }
 
@@ -37,7 +53,7 @@ export const CharactersActors = ({ characterData, title, characterDataId }) => {
         <div className="border border-[#ffd700] ">
           <ImportantCharacter characterDataId={characterDataId} />
         </div>
-        {characterData.slice(0, 8).map((item) => (
+        {characterData.slice(0, `${type ? 8 : 5}`).map((item) => (
           <div
             key={item.character.mal_id}
             className="flex flex-row items-start justify-start w-full"

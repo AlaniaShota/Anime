@@ -14,7 +14,7 @@ const links = [
   {
     id: 1,
     title: "Anime",
-    url: "/",
+    url: "/anime",
     src: [{ id: 2, title: "Top Anime", url: "/top-anime" }],
   },
   {

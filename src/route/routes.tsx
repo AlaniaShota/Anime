@@ -10,6 +10,7 @@ import { TopManga } from "../pages/TopManga";
 import { DetailManga } from "../pages/DetailManga";
 import { SearchBar } from "../component/Search";
 import { SearchPage } from "../pages/SearchPage";
+import { Anime } from "../pages/Anime";
 
 export const routes = createBrowserRouter([
   {
@@ -22,10 +23,11 @@ export const routes = createBrowserRouter([
     path: "/",
     children: [
       { path: "/", element: <Home /> },
+      { path: "/anime", element: <Anime /> },
       { path: "/manga", element: <Manga /> },
       { path: "/search", element: <SearchPage /> },
       {
-        path: "/page/:pageNumberAnime",
+        path: "/anime/page/:pageNumberAnime",
         element: <Home />,
       },
       {

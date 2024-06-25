@@ -43,7 +43,6 @@ export interface Reviews {
     }
 }
 
-// Определение состояния
 export interface ReviewsState {
     reviewsData: Reviews[];
     loading: boolean;

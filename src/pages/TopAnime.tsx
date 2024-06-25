@@ -26,10 +26,10 @@ export const TopAnime = () => {
   if (error) return <ErrorCard />;
 
   return (
-    <div className="m-auto p-auto w-3/4 ">
-      <div className="grid grid-cols-4 w-full gap-4">
+    <div className="m-auto p-auto w-5/6 ">
+      <>
         <CardList data={topAnimeData} type="anime" />
-      </div>
+      </>
     </div>
   );
 };

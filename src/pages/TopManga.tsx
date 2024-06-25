@@ -12,7 +12,7 @@ import { CardList } from "../component/CardList";
 import { ErrorCard } from "../component/Error";
 
 export const TopManga = () => {
-  const topAnimeData = useSelector(selectTopMangaData);
+  const topMangaData = useSelector(selectTopMangaData);
   const loading = useSelector(selectTopMangaLoading);
   const error = useSelector(selectTopMangaError);
   const dispatch: AppDispatch = useDispatch();
@@ -25,10 +25,10 @@ export const TopManga = () => {
   if (error) return <ErrorCard />;
 
   return (
-    <div className="m-auto p-auto w-3/4 ">
-      <div className="grid grid-cols-4 w-full gap-4">
-        <CardList data={topAnimeData} type="manga" />
-      </div>
+    <div className="m-auto p-auto w-5/6 ">
+      <>
+        <CardList data={topMangaData} type="manga" />
+      </>
     </div>
   );
 };

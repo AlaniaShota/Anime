@@ -37,7 +37,6 @@ export const Anime = () => {
 
   if (loading) return <LoadedCardList />;
   if (error) return <ErrorCard />;
-  console.log(animeData);
 
   return (
     <div className="m-auto p-auto w-5/6 ">

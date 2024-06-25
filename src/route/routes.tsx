@@ -28,7 +28,7 @@ export const routes = createBrowserRouter([
       { path: "/search", element: <SearchPage /> },
       {
         path: "/anime/page/:pageNumberAnime",
-        element: <Home />,
+        element: <Anime />,
       },
       {
         path: "/manga/page/:pageNumberManga",

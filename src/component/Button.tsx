@@ -19,7 +19,7 @@ export const SeeMoreButton = ({ showMore }) => (
       className="bg-[#c8144d]  px-4 py-2 cursor-pointer rounded-lg"
       onClick={showMore}
     >
-      <span className="text-white text-center text-lg">Show More</span>
+      <span className="text-white text-center text-lg">See More</span>
     </button>
   </div>
 );

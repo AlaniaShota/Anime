@@ -1,15 +1,15 @@
 export interface Manga {
-    // id: string;
-    id: string;
-    title: string; // Добавлено свойство title
+    score: number,
+    title: string;
     mal_id: string;
     images: { webp: { large_image_url: string } };
     type: string;
-    titles: [{ title: string }]; // Обновлено определение titles
+    titles: [{ title: string }];
     episodes: string;
 }
 
 export interface MangaAttributes {
+    score: number,
     title: string,
     mal_id: string,
     images: { webp: { large_image_url: string } },
@@ -25,16 +25,16 @@ export interface MangaState {
 }
 
 export interface TopManga {
-    id: string;
-    // id: string;
-    title: string; // Добавлено свойство title
+    score: number,
+    title: string;
     mal_id: string;
     images: { webp: { large_image_url: string } };
     type: string;
-    titles: [{ title: string }]; // Обновлено определение titles
+    titles: [{ title: string }];
     episodes: string;
 }
 export interface TopMangaState {
+
     topMangaData: TopManga[];
     loading: boolean;
     error: string | null;

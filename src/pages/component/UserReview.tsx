@@ -30,11 +30,11 @@ export const UserReview = ({ reviews }) => {
 
   return (
     <>
-      <div className="bg-white/20 p-2 rounded-md ">
+      <>
         {reviews.slice(0, userReview).map((item) => (
           <div
             key={item.mal_id}
-            className="flex flex-col justify-start items-start text-white my-2 bg-[#221426] p-4 rounded-md shadow-lg"
+            className="flex flex-col justify-start items-start text-white my-4 bg-[#3d3d3dc0] p-4 rounded-md shadow-lg"
           >
             <div className="flex flex-col  items-start">
               <div className="flex flex-row  items-center gap-2">
@@ -46,7 +46,7 @@ export const UserReview = ({ reviews }) => {
                 <h1>{item.user.username}</h1>
               </div>
               <div className="ml-14">
-                <p>{item.review.slice("", 450)}...</p>
+                <p>{item.review.slice("", 75)}...</p>
                 <div className="flex flex-row justify-end items-center gap-2 pt-5">
                   <div className="flex flex-col items-center">
                     <BsEmojiFrown className="w-5 h-5" />
@@ -77,7 +77,7 @@ export const UserReview = ({ reviews }) => {
             </div>
           </div>
         ))}
-      </div>
+      </>
       {reviews.length > userReview && (
         <SeeMoreButton showMore={showMoreReview} />
       )}

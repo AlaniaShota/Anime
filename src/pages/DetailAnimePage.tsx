@@ -108,20 +108,26 @@ export const DetailAnimePage: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-[650px] shadow-2xl ">
+      <div className="w-full h-auto shadow-2xl relative ">
         <video
           src={animeVideo}
           autoPlay
           loop
-          className="w-full object-cover top-0 rounded-b-3xl  shadow-2xl h-[640px]"
+          className="w-full h-auto object-contain top-0 rounded-b-3xl  shadow-2xl"
         ></video>
-        <div className="absolute bottom-0 w-full h-full bg-black rounded-b-3xl  bg-opacity-60">
+        <div className="absolute bottom-0 w-full h-full bg-black rounded-b-3xl  bg-opacity-70">
           <DetailHeaderSection selected={selectedAnime} />
         </div>
       </div>
-      <div className="m-auto p-auto w-5/6 flex flex-col">
+      <div className="m-auto p-auto w-11/12 flex flex-col">
         <div className="flex flex-row items-start justify-start gap-8">
-          <div className=" my-5 w-3/12">
+          <div className=" my-5 w-1/3">
+            <DetailAboutAnime selectedAnime={selectedAnime} video={video} />
+            <>
+              <UserReview reviews={reviews} />
+            </>
+          </div>
+          <div className=" my-5 w-4/6">
             <DetailAnimeSection
               selected={selectedAnime}
               characterData={filteredCharacterData}
@@ -129,13 +135,7 @@ export const DetailAnimePage: React.FC = () => {
               type="anime"
             />
           </div>
-          <div className=" my-5 w-4/6">
-            <DetailAboutAnime selectedAnime={selectedAnime} video={video} />
-          </div>
         </div>
-        <>
-          <UserReview reviews={reviews} />
-        </>
       </div>
     </>
   );

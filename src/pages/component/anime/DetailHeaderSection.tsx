@@ -2,8 +2,8 @@ import React from "react";
 import { Button } from "../../../component/Button";
 
 export const DetailHeaderSection = ({ selected }) => (
-  <div className="flex flex-row w-full justify-start gap-8 ">
-    <div className="w-3/12 h-auto rounded-md ">
+  <div className="flex flex-row w-full h-full justify-center items-end gap-8 pb-40">
+    <div className="w-54 h-62 rounded-md ">
       <img
         src={selected.images?.webp.large_image_url}
         alt={selected.title}
@@ -36,20 +36,15 @@ export const DetailHeaderSection = ({ selected }) => (
           <p> {selected.type}</p>
         </li>
       </ul>
-      <div className="flex flex-row items-center justify-start my-1 gap-2">
+      <div className="flex flex-row items-center justify-start mb-14 gap-2">
         <span className="text-sm opacity-60 my-1">Rating</span>
-        <span className="text-[#ffd700] text-lg">
-          {" "}
-          {selected.score}/10
-        </span>
+        <span className="text-[#ffd700] text-lg"> {selected.score}/10</span>
         <span className="text-sm opacity-60"> Studio</span>
-        <h4 className="text-[#ffd700] text-lg">
-          {selected.studios[0].name}
-        </h4>
+        <h4 className="text-[#ffd700] text-lg">{selected.studios[0].name}</h4>
       </div>
-      <p className="text-base font-extralight my-2 w-1/2">
+      {/* <p className="text-base font-extralight my-2 w-1/2">
         {selected.synopsis.slice("", 170)}...
-      </p>
+      </p> */}
       <Button />
     </div>
   </div>

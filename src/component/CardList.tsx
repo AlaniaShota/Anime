@@ -13,10 +13,8 @@ interface CardListProps {
 export const CardList: React.FC<CardListProps> = ({ data, type }) => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-
-
   return (
-    <div className="flex flex-row flex-wrap justify-center items-center  gap-6">
+    <div className="flex flex-row flex-wrap justify-center items-center py-32 gap-6">
       {data?.map((item) => (
         <Link
           to={`/${type}/${item.title}/character/${item.mal_id}`}

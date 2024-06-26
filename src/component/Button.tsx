@@ -44,3 +44,11 @@ export const ButtonGoBack = ({ title, src }) => (
     <span className="text-lg font-bold">Back To {title}</span>
   </Link>
 );
+
+export const ButtonReadMore = ({ toggle, show }) => (
+  <div className="flex justify-center items-center my-2 ">
+    <button onClick={toggle} className="text-white shadow-top">
+      {show ? "Show less" : "Read more"}
+    </button>
+  </div>
+);

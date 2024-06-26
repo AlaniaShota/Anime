@@ -57,27 +57,31 @@ export const DetailAboutAnime = ({ selectedAnime, video }) => {
     : truncateText(selectedAnime?.background, MAX_WORDS);
 
   return (
-    <div className="w-full text-white my-1 p-2 flex flex-col justify-start items-start">
+    <div className="w-full text-white my-1 p-2 gap-y-2 flex flex-col justify-start items-start">
       {selectedAnime?.synopsis && (
-        <div className="font-extralight">
-          <h1 className="font-extralight text-lg">Synopsis</h1>
-          <p>{synopsisText}</p>
-          {selectedAnime?.synopsis.split(" ").length > MAX_WORDS && (
-            <ButtonReadMore toggle={toggleSynopsis} show={showFullSynopsis} />
-          )}
-        </div>
+        <>
+          <h1 className="font-extralight px-2 text-lg">Synopsis</h1>
+          <div className="font-extralight  p-2 shadowStyle rounded-lg">
+            <p>{synopsisText}</p>
+            {selectedAnime?.synopsis.split(" ").length > MAX_WORDS && (
+              <ButtonReadMore toggle={toggleSynopsis} show={showFullSynopsis} />
+            )}
+          </div>
+        </>
       )}
       {selectedAnime?.background && (
-        <div className="pt-5 font-extralight">
-          <h1>Background</h1>
-          <p>{backgroundText}</p>
-          {selectedAnime?.background.split(" ").length > MAX_WORDS && (
-            <ButtonReadMore
-              toggle={toggleBackground}
-              show={showFullBackground}
-            />
-          )}
-        </div>
+        <>
+          <h1 className="font-extralight px-2 text-lg">Background</h1>
+          <div className="pt-5 font-extralight p-2  shadowStyle rounded-lg">
+            <p>{backgroundText}</p>
+            {selectedAnime?.background.split(" ").length > MAX_WORDS && (
+              <ButtonReadMore
+                toggle={toggleBackground}
+                show={showFullBackground}
+              />
+            )}
+          </div>
+        </>
       )}
     </div>
   );

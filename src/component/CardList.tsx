@@ -14,7 +14,7 @@ export const CardList: React.FC<CardListProps> = ({ data, type }) => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-row flex-wrap justify-center items-center py-32 gap-6">
+    <div className="flex flex-row flex-wrap justify-center items-center gap-6">
       {data?.map((item) => (
         <Link
           to={`/${type}/${item.title}/character/${item.mal_id}`}
@@ -46,7 +46,7 @@ export const CardList: React.FC<CardListProps> = ({ data, type }) => {
                 className="absolute bottom-0  bg-black opacity-85 flex flex-col justify-around items-start text-white p-4 w-auto h-full"
               >
                 <h3 className="text-lg font-bold">{item.title}</h3>
-                <p className="text-sm">{item.synopsis.slice(0, 175)}...</p>
+                <p className="text-sm ">{item.synopsis.slice(0, 175)}...</p>
               </div>
             )}
           </div>

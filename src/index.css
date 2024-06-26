@@ -11,3 +11,22 @@ body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
 }
+
+.shadowStyle {
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 700ms;
+}
+
+.shadowStyle:hover {
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 700ms;
+  box-shadow: inset 0px -50px 50px -13px rgba(0, 0, 0, 0.49);
+  -webkit-box-shadow: inset 0px -50px 50px -13px rgba(0, 0, 0, 0.49);
+  box-shadow: inset 0px -50px 50px -13px rgba(0, 0, 0, 0.49);
+}

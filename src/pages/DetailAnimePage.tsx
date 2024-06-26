@@ -108,12 +108,12 @@ export const DetailAnimePage: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-auto shadow-2xl relative ">
+      <div className="w-full h-[640px] shadow-2xl relative ">
         <video
           src={animeVideo}
           autoPlay
           loop
-          className="w-full h-auto object-contain top-0 rounded-b-3xl  shadow-2xl"
+          className="w-full h-[640px] object-contain top-0 rounded-b-3xl  shadow-2xl"
         ></video>
         <div className="absolute bottom-0 w-full h-full bg-black rounded-b-3xl  bg-opacity-70">
           <DetailHeaderSection selected={selectedAnime} />

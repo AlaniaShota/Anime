@@ -2,10 +2,10 @@ import React from "react";
 import { Button } from "../../../component/Button";
 
 export const DetailHeaderSection = ({ selected }) => (
-  <div className="flex flex-row w-full h-full justify-center items-end gap-8 pb-40">
+  <div className="flex flex-row w-full h-full justify-center items-end gap-8 pr-40 pb-20">
     <div className="w-54 h-62 rounded-md ">
       <img
-        src={selected.images?.webp.large_image_url}
+        src={selected.images?.webp.image_url}
         alt={selected.title}
         className="w-full h-full object-cover rounded-lg"
         loading="lazy"

@@ -14,9 +14,9 @@ export const Button = () => (
 );
 
 export const SeeMoreButton = ({ showMore }) => (
-  <div className="flex justify-center items-center w-full my-5">
+  <div className="flex justify-end items-center w-full my-5">
     <button
-      className="bg-[#c8144d]  px-4 py-2 cursor-pointer rounded-lg"
+      className="bg-[#7544b2]  px-4 py-2 cursor-pointer rounded-lg"
       onClick={showMore}
     >
       <span className="text-white text-center text-lg">See More</span>
@@ -46,9 +46,11 @@ export const ButtonGoBack = ({ title, src }) => (
 );
 
 export const ButtonReadMore = ({ toggle, show }) => (
-  <div className="flex justify-center items-center my-2 ">
-    <button onClick={toggle} className="text-white shadow-top">
-      {show ? "Show less" : "Read more"}
+  <div className="flex justify-center items-center my-2  bg-test-bg w-full h-full ">
+    <button onClick={toggle} className="text-white z-30  w-full h-full ">
+      <p className="hover:scale-75 transition duration-700 ease-in-out font-semibold text-lg">
+        {show ? "Show less" : "Read more"}
+      </p>
     </button>
   </div>
 );

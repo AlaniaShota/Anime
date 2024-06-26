@@ -48,7 +48,7 @@ export const Navigation = () => {
     dispatch(setIsSearching(true));
   };
   return (
-    <div className="flex flex-row justify-start items-start gap-8 py-8 mx-auto py-auto px-32 w-full z-50 fixed rounded-b-xl backdrop-blur-3xl">
+    <div className="flex flex-row justify-start items-start gap-8 py-4 mx-auto py-auto px-32 w-full z-50 fixed rounded-b-xl backdrop-blur-3xl">
       {links.map((link) => (
         <div key={link.id} className="p-2 w-[150px]">
           <span

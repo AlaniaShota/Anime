@@ -41,6 +41,7 @@ import {
 import { DetailPageLoader } from "../component/Loader";
 import { useAppDispatch } from "../redux/store/store";
 import { ErrorDataFound, ErrorDetailTitle } from "../component/Error";
+import animeVideo from "../assets/videoAnime.mp4";
 
 export const DetailAnimePage: React.FC = () => {
   const { animeTitle, characterId } = useParams<{
@@ -106,24 +107,36 @@ export const DetailAnimePage: React.FC = () => {
   if (!selectedAnime) return <ErrorDetailTitle title="Anime" src="/" />;
 
   return (
-    <div className="m-auto p-auto w-5/6 flex flex-col">
-      <DetailHeaderSection selected={selectedAnime} />
-      <div className="flex flex-row items-start justify-start gap-8">
-        <div className=" my-5 w-3/12">
-          <DetailAnimeSection
-            selected={selectedAnime}
-            characterData={filteredCharacterData}
-            characterDataId={characterDataId}
-            type='anime'
-          />
-        </div>
-        <div className=" my-5 w-4/6">
-          <DetailAboutAnime selectedAnime={selectedAnime} video={video} />
+    <>
+      <div className="w-full h-[650px] shadow-2xl ">
+        <video
+          src={animeVideo}
+          autoPlay
+          loop
+          className="w-full object-cover top-0 rounded-b-3xl  shadow-2xl h-[640px]"
+        ></video>
+        <div className="absolute bottom-0 w-full h-full bg-black rounded-b-3xl  bg-opacity-60">
+          <DetailHeaderSection selected={selectedAnime} />
         </div>
       </div>
-      <>
-        <UserReview reviews={reviews} />
-      </>
-    </div>
+      <div className="m-auto p-auto w-5/6 flex flex-col">
+        <div className="flex flex-row items-start justify-start gap-8">
+          <div className=" my-5 w-3/12">
+            <DetailAnimeSection
+              selected={selectedAnime}
+              characterData={filteredCharacterData}
+              characterDataId={characterDataId}
+              type="anime"
+            />
+          </div>
+          <div className=" my-5 w-4/6">
+            <DetailAboutAnime selectedAnime={selectedAnime} video={video} />
+          </div>
+        </div>
+        <>
+          <UserReview reviews={reviews} />
+        </>
+      </div>
+    </>
   );
 };

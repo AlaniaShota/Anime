@@ -2,13 +2,12 @@ import React from "react";
 import { Button } from "../../../component/Button";
 
 export const DetailHeaderSection = ({ selected }) => {
-  // console.log(selected);
 
   return (
-    <div className="flex flex-row w-full justify-start gap-8 ">
-      <div className="w-3/12 h-auto rounded-md ">
+    <div className="flex flex-row w-full h-full justify-center items-end gap-8 pr-40 pb-20">
+      <div className="w-54 h-62 rounded-md ">
         <img
-          src={selected.images?.webp.large_image_url}
+          src={selected.images?.webp.image_url}
           alt={selected.title}
           className="w-full h-full object-cover rounded-lg"
           loading="lazy"
@@ -45,9 +44,7 @@ export const DetailHeaderSection = ({ selected }) => {
           <span className="text-sm opacity-60"> Authors</span>
           <h4 className="text-[#ffd700] text-lg">{selected.authors[0].name}</h4>
         </div>
-        <p className="text-base font-extralight my-2 w-3/4">
-          {selected.synopsis}
-        </p>
+      
       </div>
     </div>
   );

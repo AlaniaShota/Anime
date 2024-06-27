@@ -49,6 +49,14 @@ export const Navigation = () => {
   };
   return (
     <div className="flex flex-row justify-start items-start gap-8 py-4 mx-auto py-auto px-32 w-full z-50 fixed rounded-b-xl backdrop-blur-3xl">
+      <Link
+        className="flex flex-row justify-start items-start w-auto gap-4 p-2"
+        to="/"
+      >
+        <span className="active:text-[#c8144d] text-lg uppercase font-extralight text-white cursor-pointer">
+          Anistar
+        </span>
+      </Link>
       {links.map((link) => (
         <div key={link.id} className="p-2 w-[150px]">
           <span
@@ -61,7 +69,7 @@ export const Navigation = () => {
             <div className="flex flex-col items-start">
               {link.src.map((sublink) => (
                 <Link to={sublink.url} key={sublink.id}>
-                  <span className="text-white text-lg">{sublink.title}</span>
+                  <span className="text-white text-lg font-extralight">{sublink.title}</span>
                 </Link>
               ))}
             </div>
@@ -69,7 +77,6 @@ export const Navigation = () => {
         </div>
       ))}
       <div className="flex flex-row justify-end items-center w-full gap-4 p-2">
-        {/* <Genres /> */}
         <SearchBar onSearch={handleSearch} />
       </div>
     </div>

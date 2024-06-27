@@ -48,7 +48,7 @@ export const CharactersActors: React.FC<CharacterProps> = ({
 
   return (
     <div className="w-full my-5">
-      <h1 className="font-extralight my-2">{title}</h1>
+      <h1 className="font-extralight my-2 text-white">{title}</h1>
       <div className="grid grid-cols-3 gap-2">
         <div className="border border-[#ffd700] ">
           <ImportantCharacter characterDataId={characterDataId} />
@@ -69,7 +69,7 @@ export const CharactersActors: React.FC<CharacterProps> = ({
                   className="w-full h-full object-cover cursor-pointer"
                 />
               </div>
-              <p className="uppercase p-1 text-xs font-mono cursor-default ">
+              <p className="uppercase p-1 text-xs font-mono cursor-default text-white">
                 {item.character.name}
               </p>
             </div>

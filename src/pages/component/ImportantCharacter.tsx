@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ModalButton } from "../../component/Button";
 
 const ViewModal = ({ importantCharacter, closeModal }) => (
-  <div className="fixed inset-0 z-50 flex flex-row gap-4 justify-center items-center bg-black">
+  <div className="fixed inset-0 z-100 flex flex-row gap-4 justify-center items-center bg-black">
     <div className="relative w-1/4 h-full ">
       <img
         src={importantCharacter?.images.webp.image_url}
@@ -37,7 +37,7 @@ export const ImportantCharacter = ({ characterDataId }) => {
 
   return (
     <div
-      className="w-auto h-52 opacity-75 hover:opacity-100 transition duration-700 ease-in-out"
+      className="w-auto h-52 opacity-75 hover:opacity-100 transition duration-700 ease-in-out text-white"
       onClick={() => openModal(characterDataId)}
     >
       <img

@@ -51,11 +51,10 @@ export const Episodes = ({ video }) => {
 
   const notFoundData = () => {
     if (!videoError) return <ErrorDataFound title="episodes" />;
-    // return null;
   };
 
   return (
-    <div className="flex flex-col w-full my-4 justify-start items-start">
+    <div className="flex flex-col w-full my-4 justify-start items-start text-white font-extralight">
       {video?.episodes && video.episodes.length > 0 ? (
         <EpisodeList
           video={video}

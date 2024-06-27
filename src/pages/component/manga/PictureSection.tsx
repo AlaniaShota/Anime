@@ -15,10 +15,12 @@ export const PictureSection = ({ picture }) => {
   const closeModal = () => {
     setSelectedImage(null);
   };
+
   if (pictureError) return <ErrorDataFound title="picture" />;
+
   return (
     <>
-      <div className="flex flex-row flex-wrap justify-center items-center gap-2">
+      <div className="flex flex-row flex-wrap justify-center items-center gap-2  mt-14">
         {picture.map((img, index) => (
           <div
             key={index}

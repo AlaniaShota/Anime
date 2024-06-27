@@ -54,3 +54,67 @@ export const ButtonReadMore = ({ toggle, show }) => (
     </button>
   </div>
 );
+
+export const SwitchButtonSection = ({ selectedTitle, setSelectedTitle }) => (
+  <div className="flex flex-row justify-start items-center gap-4 px-1">
+    <button
+      className={`  px-4 py-2 ${
+        selectedTitle === "A" ? "rounded-lg active" : "rounded-lg shadowStyle"
+      }`}
+      onClick={() => setSelectedTitle("A")}
+    >
+      <h1 className="text-white text-lg ">Score</h1>
+    </button>
+    <button
+      className={`  px-4 py-2 ${
+        selectedTitle === "B" ? "rounded-lg active" : "rounded-lg shadowStyle"
+      }`}
+      onClick={() => setSelectedTitle("B")}
+    >
+      <h1 className="text-white text-lg ">About</h1>
+    </button>
+    <button
+      className={`  px-4 py-2 ${
+        selectedTitle === "C" ? "rounded-lg active" : "rounded-lg shadowStyle"
+      }`}
+      onClick={() => setSelectedTitle("C")}
+    >
+      <h1 className="text-white text-lg ">Character</h1>
+    </button>
+  </div>
+);
+
+const footerLink = [
+  {
+    id: 1,
+    title: "LinkedIn",
+    href: "https://www.linkedin.com/in/shota-alania-0a705820b/",
+    color: "#0a66c2",
+  },
+  {
+    id: 2,
+    title: "GitHub",
+    href: "https://github.com/AlaniaShota",
+    color: "#fff",
+  },
+];
+
+export const FooterButton = () => (
+  <div className="flex flex-row justify-start items-center gap-6 my-6">
+    {footerLink.map((item) => (
+      <Link
+        target="_blank"
+        to={item.href}
+        style={{ backgroundColor: item.color }}
+        key={item.id}
+        className={`text-lg py-2 rounded-3xl ${
+          item.id === 1
+            ? "px-6 text-white shadowStyle"
+            : "px-4 text-black shadowStyle hover:text-white"
+        }`}
+      >
+        {item.title}
+      </Link>
+    ))}
+  </div>
+);

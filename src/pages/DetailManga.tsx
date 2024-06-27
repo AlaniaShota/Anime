@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -16,7 +16,6 @@ import {
   fetchPictureManga,
   fetchReviewsManga,
 } from "../redux/reducer/manga/mangaReducer";
-import { DetailAnimeSection } from "./component/manga/DetailAnimeSection";
 import {
   selectReviewsMangaData,
   selectReviewsMangaLoading,
@@ -38,6 +37,10 @@ import { selectReviewsError } from "../redux/reducer/anime/reviewsSlice";
 import { useAppDispatch } from "../redux/store/store";
 import { ErrorDetailTitle } from "../component/Error";
 import mangaVideo from "../assets/Naruto vs Luffy _ manga animation.mp4";
+import { DetailAboutManga } from "./component/manga/DetailAboutManga";
+import { CharactersActors } from "./component/CharactersActors";
+import { SwitchButtonSection } from "../component/Button";
+import { DetailMangaSection } from "./component/manga/DetailMangaSection";
 
 export const DetailManga: React.FC = () => {
   const { mangaTitle, characterId } = useParams<{
@@ -60,6 +63,7 @@ export const DetailManga: React.FC = () => {
   const pictureLoader = useSelector(selectPictureMangaLoading);
   const reviewsLoader = useSelector(selectReviewsMangaLoading);
   const reviewsError = useSelector(selectReviewsError);
+  const [selectedTitle, setSelectedTitle] = useState<string>("A");
 
   useEffect(() => {
     if (characterId) {
@@ -103,6 +107,27 @@ export const DetailManga: React.FC = () => {
     return <DetailPageLoader />;
   }
 
+  const renderComponent = () => {
+    switch (selectedTitle) {
+      case "A":
+        return <DetailMangaSection selected={selectedManga} />;
+      case "B":
+        return <DetailAboutManga selectedManga={selectedManga} />;
+      case "C":
+        return (
+          <CharactersActors
+            title="Characters Manga"
+            characterData={filteredCharacterData}
+            characterDataId={characterDataId}
+            type="manga"
+          />
+        );
+      default:
+        return null;
+    }
+  };
+  console.log(selectedManga);
+
   return (
     <>
       <div className="w-full h-[640px] shadow-2xl relative ">
@@ -116,22 +141,20 @@ export const DetailManga: React.FC = () => {
           <DetailHeaderSection selected={selectedManga} />
         </div>
       </div>
-      <div className="m-auto p-auto w-5/6 flex flex-col">
+      <div className="m-auto p-auto w-11/12 flex flex-col">
         <div className="flex flex-row items-start justify-start gap-8">
-          <div className=" my-5 w-3/12">
-            <DetailAnimeSection
-              selected={selectedManga}
-              characterData={filteredCharacterData}
-              characterDataId={characterDataId}
+          <div className="my-5 w-1/3">
+            <SwitchButtonSection
+              selectedTitle={selectedTitle}
+              setSelectedTitle={setSelectedTitle}
             />
+            {renderComponent()}
+            <UserReview reviews={reviews} />
           </div>
           <div className=" my-5 w-4/6">
             <PictureSection picture={picture} />
           </div>
         </div>
-        <>
-          <UserReview reviews={reviews} />
-        </>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -42,6 +42,10 @@ import { DetailPageLoader } from "../component/Loader";
 import { useAppDispatch } from "../redux/store/store";
 import { ErrorDataFound, ErrorDetailTitle } from "../component/Error";
 import animeVideo from "../assets/videoAnime.mp4";
+import { SwitchButtonSection } from "../component/Button";
+import { CharactersActors } from "./component/CharactersActors";
+import { Trailer } from "./component/anime/Trailer";
+import { Episodes } from "./component/anime/Episodes";
 
 export const DetailAnimePage: React.FC = () => {
   const { animeTitle, characterId } = useParams<{
@@ -62,6 +66,7 @@ export const DetailAnimePage: React.FC = () => {
   const characterDataIdLoader = useSelector(selectCharacterIdLoading);
   const videoLoader = useSelector(selectVideoLoading);
   const reviewsLoader = useSelector(selectVideoLoading);
+  const [selectedTitle, setSelectedTitle] = useState<string>("A");
 
   useEffect(() => {
     if (characterId) {
@@ -106,6 +111,26 @@ export const DetailAnimePage: React.FC = () => {
 
   if (!selectedAnime) return <ErrorDetailTitle title="Anime" src="/" />;
 
+  const renderComponent = () => {
+    switch (selectedTitle) {
+      case "A":
+        return <DetailAnimeSection selected={selectedAnime} />;
+      case "B":
+        return <DetailAboutAnime selectedAnime={selectedAnime} video={video} />;
+      case "C":
+        return (
+          <CharactersActors
+            title="Characters Anime"
+            characterData={filteredCharacterData}
+            characterDataId={characterDataId}
+            type="anime"
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <div className="w-full h-[640px] shadow-2xl relative ">
@@ -122,18 +147,18 @@ export const DetailAnimePage: React.FC = () => {
       <div className="m-auto p-auto w-11/12 flex flex-col">
         <div className="flex flex-row items-start justify-start gap-8">
           <div className=" my-5 w-1/3">
-            <DetailAboutAnime selectedAnime={selectedAnime} video={video} />
-            <>
-              <UserReview reviews={reviews} />
-            </>
+            <SwitchButtonSection
+              selectedTitle={selectedTitle}
+              setSelectedTitle={setSelectedTitle}
+            />
+            {renderComponent()}
+            <UserReview reviews={reviews} />
           </div>
           <div className=" my-5 w-4/6">
-            <DetailAnimeSection
-              selected={selectedAnime}
-              characterData={filteredCharacterData}
-              characterDataId={characterDataId}
-              type="anime"
-            />
+            <div className="flex flex-col justify-center items-center w-full my-5">
+              <Trailer video={video} />
+              <Episodes video={video} />
+            </div>
           </div>
         </div>
       </div>

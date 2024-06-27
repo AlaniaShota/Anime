@@ -1,16 +1,12 @@
 import React from "react";
-import { CharactersActors } from "../CharactersActors";
 
-export const DetailAnimeSection = ({
-  selected,
-  characterData,
-  characterDataId,
-  type
-}) => (
-  <div className="flex flex-col justify-start items-start text-white gap-4 w-full">
+export const DetailAnimeSection = ({ selected }) => (
+  <div className="flex flex-col justify-start items-start text-white gap-4 w-full p-2 my-1">
     <div className="flex flex-col text-white border border-white/75 rounded-md p-4 w-full">
-      <h1 className="border-white/50 border-b text-lg">Information</h1>
-      <ul className="flex flex-col items-start gap-1  text-sm py-1">
+      <h1 className="border-white/50 border-b font-extralight px-2 text-lg">
+        Information
+      </h1>
+      <ul className="flex flex-col items-start gap-1 px-2 font-extralight text-sm py-1">
         <li className="gap-2 flex items-center">
           <span>Type</span>
           <span>{selected.type}</span>
@@ -73,8 +69,10 @@ export const DetailAnimeSection = ({
       </ul>
     </div>
     <div className="flex flex-col text-white border border-white/75 rounded-md p-4 w-full">
-      <h1 className="border-white/50 border-b text-lg">Statistics</h1>
-      <ul className="flex flex-col items-start gap-1 text-sm py-1">
+      <h1 className="border-white/50 border-b text-lg font-extralight px-2">
+        Statistics
+      </h1>
+      <ul className="flex flex-col items-start gap-1 text-sm py-1 font-extralight px-2">
         <li className="gap-2 flex items-center">
           <span>Score</span>
           <span className="text-[#ffd700]">{selected.score}</span>
@@ -97,13 +95,5 @@ export const DetailAnimeSection = ({
         </li>
       </ul>
     </div>
-    <>
-      <CharactersActors
-        characterData={characterData}
-        characterDataId={characterDataId}
-        title="Characters & Voice Actors"
-        type={type}
-      />
-    </>
   </div>
 );

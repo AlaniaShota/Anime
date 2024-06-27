@@ -1,1 +1,2 @@
 src/assets/videoAnime.mp4 filter=lfs diff=lfs merge=lfs -text
+src/assets/Naruto[[:space:]]vs[[:space:]]Luffy[[:space:]]_[[:space:]]manga[[:space:]]animation.mp4 filter=lfs diff=lfs merge=lfs -text

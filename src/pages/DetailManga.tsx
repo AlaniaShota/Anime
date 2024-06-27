@@ -37,6 +37,7 @@ import { DetailPageLoader } from "../component/Loader";
 import { selectReviewsError } from "../redux/reducer/anime/reviewsSlice";
 import { useAppDispatch } from "../redux/store/store";
 import { ErrorDetailTitle } from "../component/Error";
+import mangaVideo from "../assets/Naruto vs Luffy _ manga animation.mp4";
 
 export const DetailManga: React.FC = () => {
   const { mangaTitle, characterId } = useParams<{
@@ -59,8 +60,6 @@ export const DetailManga: React.FC = () => {
   const pictureLoader = useSelector(selectPictureMangaLoading);
   const reviewsLoader = useSelector(selectReviewsMangaLoading);
   const reviewsError = useSelector(selectReviewsError);
-  //უნდა ვიმუშაო error
-  console.log(reviewsError);
 
   useEffect(() => {
     if (characterId) {
@@ -91,7 +90,7 @@ export const DetailManga: React.FC = () => {
       )
     : [];
 
-  if (!selectedManga) return <ErrorDetailTitle title="Manga" src='/manga'/>;
+  if (!selectedManga) return <ErrorDetailTitle title="Manga" src="/manga" />;
 
   if (
     mangaDataLoader ||
@@ -105,24 +104,35 @@ export const DetailManga: React.FC = () => {
   }
 
   return (
-    <div className="m-auto p-auto w-5/6 flex flex-col">
-      <DetailHeaderSection selected={selectedManga} />
-
-      <div className="flex flex-row items-start justify-start gap-8">
-        <div className=" my-5 w-3/12">
-          <DetailAnimeSection
-            selected={selectedManga}
-            characterData={filteredCharacterData}
-            characterDataId={characterDataId}
-          />
-        </div>
-        <div className=" my-5 w-4/6">
-          <PictureSection picture={picture} />
+    <>
+      <div className="w-full h-[640px] shadow-2xl relative ">
+        <video
+          src={mangaVideo}
+          autoPlay
+          loop
+          className="w-full h-[640px] object-contain top-0 rounded-b-3xl  shadow-2xl"
+        ></video>
+        <div className="absolute bottom-0 w-full h-full bg-black rounded-b-3xl  bg-opacity-70">
+          <DetailHeaderSection selected={selectedManga} />
         </div>
       </div>
-      <>
-        <UserReview reviews={reviews} />
-      </>
-    </div>
+      <div className="m-auto p-auto w-5/6 flex flex-col">
+        <div className="flex flex-row items-start justify-start gap-8">
+          <div className=" my-5 w-3/12">
+            <DetailAnimeSection
+              selected={selectedManga}
+              characterData={filteredCharacterData}
+              characterDataId={characterDataId}
+            />
+          </div>
+          <div className=" my-5 w-4/6">
+            <PictureSection picture={picture} />
+          </div>
+        </div>
+        <>
+          <UserReview reviews={reviews} />
+        </>
+      </div>
+    </>
   );
 };

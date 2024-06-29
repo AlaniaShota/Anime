@@ -1,26 +1,4 @@
-// interface GenresAttributes {
-//     canonicalName: string;
-//     image: {
-//         original: string;
-//         large: string;
-//         medium: string;
-//         small: string;
-//         tiny: string;
-//     };
-//     description: string;
-// }
 
-// export interface Genres {
-//     id: string;
-//     attributes: GenresAttributes;
-// }
-
-// export interface GenresState {
-//     genresData: Genres[];
-//     loading: boolean;
-//     error: string | null;
-// }
-// Определение интерфейсов
 interface ImageUrls {
     jpg: { image_url: string };
     webp: { image_url: string; small_image_url: string; large_image_url: string };

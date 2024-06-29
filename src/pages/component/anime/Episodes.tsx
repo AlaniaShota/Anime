@@ -7,33 +7,39 @@ import { ErrorDataFound } from "../../../component/Error";
 
 const AnimationPulseError = ({ sizeW, sizeH }) => (
   <div
-    className={`bg-black h-${sizeH} w-${sizeW} flex flex-col flex-wrap justify-center items-center `}
+    className={`bg-black h-${sizeH} w-${sizeW} flex flex-col flex-wrap justify-center items-center rounded-lg`}
   >
     <MdErrorOutline size="55" className=" animate-pulse" />
   </div>
 );
 
-const EpisodeList = ({ video, visibleEpisodes, showMoreEpisodes }) => (
-  <>
-    <h1 className="font-extralight text-2xl mb-2">Episodes</h1>
-    <div className="grid grid-cols-4 items-center gap-2 w-full">
-      {video.episodes.slice(0, visibleEpisodes).map((episode) => (
-        <EpisodeItem episode={episode} key={episode.mal_id} />
-      ))}
-    </div>
-    {video.episodes.length > visibleEpisodes && (
-      <SeeMoreButton showMore={showMoreEpisodes} />
-    )}
-  </>
-);
+const EpisodeList = ({ video, visibleEpisodes, showMoreEpisodes }) => {
+  // Реверсируем массив эпизодов
+  const sortedEpisodes = [...video.episodes].reverse();
+
+  return (
+    <>
+      <h1 className="font-extralight text-2xl mb-2">Episodes</h1>
+      <div className="grid grid-cols-4 items-center gap-2 w-full">
+        {sortedEpisodes.slice(0, visibleEpisodes).map((episode) => (
+          <EpisodeItem episode={episode} key={episode.mal_id} />
+        ))}
+      </div>
+      {sortedEpisodes.length > visibleEpisodes && (
+        <SeeMoreButton showMore={showMoreEpisodes} />
+      )}
+    </>
+  );
+};
 
 const EpisodeItem = ({ episode }) => (
-  <div
-    key={episode.mal_id}
-    className="flex flex-col flex-wrap cursor-not-allowed opacity-70 hover:opacity-100 transition duration-700 ease-in-out"
-  >
+  <div key={episode.mal_id} className="flex flex-col flex-wrap gap-3">
     {episode.images.jpg.image_url ? (
-      <img src={episode.images.jpg.image_url} alt={episode.title} />
+      <img
+        src={episode.images.jpg.image_url}
+        alt={episode.title}
+        className="cursor-not-allowed rounded-lg opacity-60 hover:opacity-100 transition duration-700 ease-in-out"
+      />
     ) : (
       <AnimationPulseError sizeW="60" sizeH="60" />
     )}

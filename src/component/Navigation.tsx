@@ -9,7 +9,7 @@ import {
   setIsSearching,
   setSearchQuery,
 } from "../redux/reducer/searchSlice";
-// import { Genres } from "./Genres";
+
 const links = [
   {
     id: 1,
@@ -26,14 +26,14 @@ const links = [
 ];
 
 export const Navigation = () => {
-  const [activeLink, setActiveLink] = useState<number | null>(null);
+  const [activeLink, setActiveLink] = useState<string | null>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const animeData = useSelector(selectAnimeData);
   const mangaData = useSelector(selectMangaData);
 
-  const handleLinkClick = (id: number, url: string) => {
-    setActiveLink(id === activeLink ? null : id);
+  const handleLinkClick = (title: string, url: string) => {
+    setActiveLink(title === activeLink ? null : title);
     navigate(url);
   };
   const handleSearch = (query: string) => {
@@ -53,7 +53,7 @@ export const Navigation = () => {
         className="flex flex-row justify-start items-start w-auto gap-4 p-2"
         to="/"
       >
-        <span className="active:text-[#c8144d] text-lg uppercase font-extralight text-white cursor-pointer">
+        <span className="active:text-[#c8144d] text-lg uppercase font-extralight text-white cursor-pointer w-[100px]">
           Anistar
         </span>
       </Link>
@@ -61,15 +61,17 @@ export const Navigation = () => {
         <div key={link.id} className="p-2 w-[150px]">
           <span
             className="text-white text-lg uppercase font-extralight cursor-pointer"
-            onClick={() => handleLinkClick(link.id, link.url)}
+            onClick={() => handleLinkClick(link.title, link.url)}
           >
             {link.title}
           </span>
-          {activeLink === link.id && (
+          {activeLink === link.title && (
             <div className="flex flex-col items-start">
               {link.src.map((sublink) => (
                 <Link to={sublink.url} key={sublink.id}>
-                  <span className="text-white text-lg font-extralight">{sublink.title}</span>
+                  <span className="text-white  font-extralight">
+                    {sublink.title}
+                  </span>
                 </Link>
               ))}
             </div>

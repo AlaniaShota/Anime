@@ -1,13 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Video } from './type';
+import { Video, VideoState } from './type';
 import { fetchVideo } from './reducer';
 import { RootState } from '../../store/store';
-
-interface VideoState {
-    videoData: Video | [];
-    loading: boolean;
-    error: string | null;
-}
 
 const initialState: VideoState = {
     videoData: [],
@@ -25,7 +19,7 @@ const videoSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchVideo.fulfilled, (state, action: PayloadAction<Video>) => {
+            .addCase(fetchVideo.fulfilled, (state, action: PayloadAction<Video[]>) => {
                 state.loading = false;
                 state.videoData = action.payload;
             })
@@ -36,7 +30,7 @@ const videoSlice = createSlice({
     },
 });
 
-export const selectVideoData = (state: RootState): Video | [] => state.video.videoData;
+export const selectVideoData = (state: RootState): Video[] => state.video.videoData;
 export const selectVideoLoading = (state: RootState): boolean => state.video.loading;
 export const selectVideoError = (state: RootState): string | null => state.video.error;
 

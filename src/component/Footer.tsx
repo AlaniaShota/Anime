@@ -19,9 +19,11 @@ export const Footer = () => {
         </Link>
       </h1>
       <FooterButton />
-      <div className="flex flex-row items-center justify-start gap-2 text-lg font-extralight">
+      <div className="flex flex-row items-center justify-start gap-2 text-lg font-extralight ">
         {footerText.map((item, index) => (
-          <h1 key={index}>{item}</h1>
+          <h1 key={index} className="cursor-not-allowed  hover:opacity-40">
+            {item}
+          </h1>
         ))}
       </div>
     </div>

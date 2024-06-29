@@ -16,7 +16,7 @@ export const Button = () => (
 export const SeeMoreButton = ({ showMore }) => (
   <div className="flex justify-end items-center w-full my-5">
     <button
-      className="bg-[#7544b2]  px-4 py-2 cursor-pointer rounded-lg"
+      className="bg-[#0a66c2] px-4 py-2 cursor-pointer rounded-lg shadowStyle"
       onClick={showMore}
     >
       <span className="text-white text-center text-lg">See More</span>

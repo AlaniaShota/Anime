@@ -31,7 +31,7 @@ export const PictureSection = ({ picture }) => {
               src={img.webp.image_url}
               alt="Manga Picture"
               loading="lazy"
-              className="w-full h-full cursor-pointer"
+              className="w-full h-full cursor-pointer rounded-lg opacity-60 hover:opacity-100 transition duration-700 ease-in-out"
             />
           </div>
         ))}

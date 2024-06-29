@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Anime, TopAnime, Video } from './type';
-import { Character, CharacterId, Genres, Reviews } from '../../type/interfaces';
+import { Character, CharacterId, Reviews } from '../../type/interfaces';
 
 interface FetchAnimeArgs {
     page: number;
@@ -9,7 +9,6 @@ interface FetchAnimeArgs {
 }
 const __urlANIME = 'https://api.jikan.moe/v4/'
 
-// General fetch function
 const fetchData = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
     try {
         const response = await axios.get<T>(url, config);
@@ -19,7 +18,7 @@ const fetchData = async <T>(url: string, config?: AxiosRequestConfig): Promise<T
     }
 };
 
-// Async thunk creator
+
 const createFetchThunk = <Returned, ThunkArg>(
     typePrefix: string,
     urlBuilder: (arg: ThunkArg) => string,
@@ -36,7 +35,7 @@ const createFetchThunk = <Returned, ThunkArg>(
     });
 };
 
-// URL builders
+
 export const buildAnimeUrl = ({ page, limit }: FetchAnimeArgs) => `${__urlANIME}anime?page=${page}&limit=${limit}`;
 const buildSearchUrl = (query: string) => `${__urlANIME}anime/search?q=${query}`;
 const buildTopAnimeUrl = () => `${__urlANIME}top/anime`;
@@ -44,9 +43,7 @@ const buildCharacterUrl = (characterId: string) => `${__urlANIME}anime/${charact
 const buildCharacterUrlId = (characterId: string) => `${__urlANIME}characters/${characterId}`;
 const buildReviewsUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/reviews`;
 const buildVideoUrl = (characterId: string) => `${__urlANIME}anime/${characterId}/videos`;
-// const buildGenres = () => `${__urlANIME}genres/anime`;
 
-// Thunks
 export const fetchAnime = createFetchThunk<Anime[], FetchAnimeArgs>('anime/fetchAnime', buildAnimeUrl);
 export const searchAnime = createFetchThunk<Anime[], string>('anime/searchAnime', buildSearchUrl);
 export const fetchTopAnime = createFetchThunk<TopAnime[], void>('topAnime/fetchTopAnime', buildTopAnimeUrl);
@@ -57,4 +54,3 @@ export const fetchCharacterId = createFetchThunk<CharacterId[], string>(
 );
 export const fetchReviews = createFetchThunk<Reviews[], string>('reviews/fetchReviews', buildReviewsUrl);
 export const fetchVideo = createFetchThunk<Video, string>('video/fetchVideo', buildVideoUrl);
-// export const fetchGenres = createFetchThunk<Genres, string>('genres/fetchGenres', buildGenres);

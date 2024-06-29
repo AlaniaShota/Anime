@@ -62,6 +62,11 @@ export interface AnimeState {
     loading: boolean;
     error: string | null;
 }
+export interface VideoState {
+    videoData: Video[];
+    loading: boolean;
+    error: string | null;
+}
 
 interface VideoAttributes {
     mal_id: number,
@@ -80,6 +85,6 @@ export interface RootState {
 }
 
 export interface Video {
-    id: string;
+    mal_id: string;
     attributes: VideoAttributes;
 }

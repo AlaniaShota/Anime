@@ -11,7 +11,6 @@ import characterMangaSlice from '../reducer/manga/characterMangaSlice';
 import pictureMangaSlice from '../reducer/manga/pictureMangaSlice';
 import characterIdSlice from '../reducer/characterIdSlice';
 import { useDispatch } from 'react-redux';
-// import genresSlice from '../reducer/anime/genresAnimeSlice'
 
 const rootReducer = combineReducers({
     anime: animeReducer,
@@ -25,7 +24,6 @@ const rootReducer = combineReducers({
     video: videoSlice,
     search: searchReducer,
     pictureManga: pictureMangaSlice,
-    // genres: genresSlice
 });
 
 const store = configureStore({

@@ -8,7 +8,6 @@ interface FetchMangaArgs {
     limit: number;
 }
 const __urlMANGA = 'https://api.jikan.moe/v4/'
-// General fetch function
 const fetchData = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
     try {
         const response = await axios.get<T>(url, config);
@@ -18,7 +17,7 @@ const fetchData = async <T>(url: string, config?: AxiosRequestConfig): Promise<T
     }
 };
 
-// Async thunk creator
+
 const createFetchThunk = <Returned, ThunkArg>(
     typePrefix: string,
     urlBuilder: (arg: ThunkArg) => string,
@@ -35,17 +34,15 @@ const createFetchThunk = <Returned, ThunkArg>(
     });
 };
 
-// URL builders
+
 const buildMangaUrl = ({ page, limit }: FetchMangaArgs) => `${__urlMANGA}manga?page=${page}&limit=${limit}`;
-// const buildSearchUrl = (query: string) => `${__urlANIME}anime?search=${query}`;
 const buildTopMangaUrl = () => `${__urlMANGA}top/manga`;
 const buildCharacterUrl = (characterId: string) => `${__urlMANGA}manga/${characterId}/characters`;
 const buildReviewsUrl = (characterId: string) => `${__urlMANGA}manga/${characterId}/reviews`;
 const buildPictureManga = (characterId: string) => `${__urlMANGA}manga/${characterId}/pictures`;
 
-// // Thunks
+
 export const fetchManga = createFetchThunk<Manga[], FetchMangaArgs>('manga/fetchManga', buildMangaUrl);
-// export const searchAnime = createFetchThunk<Anime[], string>('anime/searchAnime', buildSearchUrl);
 export const fetchTopManga = createFetchThunk<TopManga[], void>('topManga/fetchTopManga', buildTopMangaUrl);
 export const fetchCharacterManga = createFetchThunk<Character[], string>('character/fetchCharacter', buildCharacterUrl);
 export const fetchReviewsManga = createFetchThunk<Reviews[], string>('reviews/fetchReviews', buildReviewsUrl);

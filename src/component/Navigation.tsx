@@ -36,6 +36,7 @@ export const Navigation = () => {
     setActiveLink(title === activeLink ? null : title);
     navigate(url);
   };
+
   const handleSearch = (query: string) => {
     dispatch(setSearchQuery(query));
     const filteredAnime = animeData.filter((item) =>
@@ -47,6 +48,7 @@ export const Navigation = () => {
     dispatch(setFilteredData([...filteredAnime, ...filteredManga]));
     dispatch(setIsSearching(true));
   };
+
   return (
     <div className="flex flex-row justify-start items-start gap-8 py-4 mx-auto py-auto px-32 w-full z-50 fixed rounded-b-xl backdrop-blur-3xl">
       <Link
@@ -58,7 +60,7 @@ export const Navigation = () => {
         </span>
       </Link>
       {links.map((link) => (
-        <div key={link.id} className="p-2 w-[150px]">
+        <div key={link.id} className="w-[150px]">
           <span
             className="text-white text-lg uppercase font-extralight cursor-pointer"
             onClick={() => handleLinkClick(link.title, link.url)}
@@ -78,9 +80,9 @@ export const Navigation = () => {
           )}
         </div>
       ))}
-      <div className="flex flex-row justify-end items-center w-full gap-4 p-2">
-        <SearchBar onSearch={handleSearch} />
-      </div>
+
+        <SearchBar onSearch={handleSearch} device="" />
+
     </div>
   );
 };

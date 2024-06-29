@@ -100,7 +100,7 @@ const footerLink = [
 ];
 
 export const FooterButton = () => (
-  <div className="flex flex-row justify-start items-center gap-6 my-6">
+  <div className="flex flex-row max-sm:flex-col justify-start items-center max-sm:items-start gap-6 my-6">
     {footerLink.map((item) => (
       <Link
         target="_blank"

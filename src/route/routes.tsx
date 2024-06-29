@@ -11,6 +11,7 @@ import { DetailManga } from "../pages/DetailManga";
 import { SearchBar } from "../component/Search";
 import { SearchPage } from "../pages/SearchPage";
 import { Anime } from "../pages/Anime";
+import { Error } from "../pages/Error";
 
 export const routes = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const routes = createBrowserRouter([
       { path: "/anime", element: <Anime /> },
       { path: "/manga", element: <Manga /> },
       { path: "/search", element: <SearchPage /> },
+      { path: "*", element: <Error /> },
       {
         path: "/anime/page/:pageNumberAnime",
         element: <Anime />,

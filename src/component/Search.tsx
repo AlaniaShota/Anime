@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { IoMdSearch } from "react-icons/io";
+
 import { Link } from "react-router-dom";
 
 interface SearchBarProps {
+  device: boolean;
   onSearch: (query: string) => void;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+export const SearchBar: React.FC<SearchBarProps> = ({ onSearch, device }) => {
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
@@ -16,17 +18,17 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <>
+    <div className="flex flex-row justify-end max-sm:justify-center items-center w-full gap-4">
       <input
-        className="border border-blue-400 rounded-lg p-1  font-medium "
+        className="border border-blue-400 rounded-lg p-1 font-medium "
         placeholder="Search"
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button className="cursor-pointer text-white" onClick={handleSearch}>
-        <Link to="/search">Search</Link>
+        <Link to="/search">{device ? <IoMdSearch size={30} /> : "Search"}</Link>
       </button>
-    </>
+    </div>
   );
 };

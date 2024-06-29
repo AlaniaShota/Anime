@@ -11,7 +11,7 @@ const footerText = [
 
 export const Footer = () => {
   return (
-    <div className="w-full h-54 flex flex-col justify-start items-start text-white bg-black/40 p-10">
+    <div className="w-full h-54 flex flex-col justify-start items-start text-white bg-black/40 py-10 px-32 max-sm:p-8">
       <h1 className="text-xl font-extralight">
         Watch anime on {``}
         <Link to="/">
@@ -19,7 +19,7 @@ export const Footer = () => {
         </Link>
       </h1>
       <FooterButton />
-      <div className="flex flex-row items-center justify-start gap-2 text-lg font-extralight ">
+      <div className="flex flex-row max-sm:flex-col items-center max-sm:items-start justify-start gap-2 text-lg font-extralight ">
         {footerText.map((item, index) => (
           <h1 key={index} className="cursor-not-allowed  hover:opacity-40">
             {item}

@@ -12,40 +12,41 @@ import { SearchBar } from "../component/Search";
 import { SearchPage } from "../pages/SearchPage";
 import { Anime } from "../pages/Anime";
 import { Error } from "../pages/Error";
+import { MobileProvider } from "../component/Mobile";
 
 export const routes = createBrowserRouter([
   {
     element: (
-      <>
+      <MobileProvider>
         <Layout />
         <ScrollToTop />
-      </>
+      </MobileProvider>
     ),
     path: "/",
     children: [
       { path: "/", element: <Home /> },
       { path: "/anime", element: <Anime /> },
-      { path: "/manga", element: <Manga /> },
-      { path: "/search", element: <SearchPage /> },
-      { path: "*", element: <Error /> },
       {
         path: "/anime/page/:pageNumberAnime",
         element: <Anime />,
-      },
-      {
-        path: "/manga/page/:pageNumberManga",
-        element: <Manga />,
       },
       { path: "/top-anime", element: <TopAnime /> },
       {
         path: "/anime/:animeTitle/character/:characterId",
         element: <DetailAnimePage />,
       },
+      { path: "/manga", element: <Manga /> },
+      {
+        path: "/manga/page/:pageNumberManga",
+        element: <Manga />,
+      },
+      { path: "/top-manga", element: <TopManga /> },
       {
         path: "/manga/:mangaTitle/character/:characterId",
         element: <DetailManga />,
       },
-      { path: "/top-manga", element: <TopManga /> },
+      { path: "/search", element: <SearchPage /> },
+      { path: "*", element: <Error /> },
     ],
   },
 ]);

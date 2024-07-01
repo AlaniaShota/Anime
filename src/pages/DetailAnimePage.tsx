@@ -46,6 +46,7 @@ import { SwitchButtonSection } from "../component/Button";
 import { CharactersActors } from "./component/CharactersActors";
 import { Trailer } from "./component/anime/Trailer";
 import { Episodes } from "./component/anime/Episodes";
+import { useMobile } from "../component/Mobile";
 
 export const DetailAnimePage: React.FC = () => {
   const { animeTitle, characterId } = useParams<{
@@ -67,19 +68,7 @@ export const DetailAnimePage: React.FC = () => {
   const videoLoader = useSelector(selectVideoLoading);
   const reviewsLoader = useSelector(selectVideoLoading);
   const [selectedTitle, setSelectedTitle] = useState<string>("A");
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 530);
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useMobile();
 
   useEffect(() => {
     if (characterId) {

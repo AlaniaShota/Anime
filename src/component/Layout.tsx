@@ -3,22 +3,10 @@ import { Navigation } from "./Navigation";
 import { Outlet } from "react-router-dom";
 import { Footer } from "./Footer";
 import { HamburgerMenu } from "./HamburgerMenu";
+import { useMobile } from "./Mobile";
 
 export const Layout = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 530);
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
+  const isMobile = useMobile();
   return (
     <>
       {isMobile ? <HamburgerMenu /> : <Navigation />}

@@ -51,7 +51,7 @@ export const Home = () => {
   if (topAnimeError && topMangaError) return <ErrorCard />;
 
   return (
-    <div className="m-auto p-auto w-5/6 ">
+    <div className="m-auto p-auto w-5/6 max-sm:w-11/12">
       <div className="flex flex-col justify-center items-center gap-10">
         <div className="flex flex-col justify-start items-start gap-3">
           <Link to="/anime">

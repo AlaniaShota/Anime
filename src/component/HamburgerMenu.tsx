@@ -76,7 +76,7 @@ export const HamburgerMenu = () => {
             className="flex flex-col items-start justify-start w-2/3 ml-5"
           >
             {" "}
-            <span className="text-lg uppercase font-extralight my-1 ">
+            <span className="text-2xl uppercase font-extralight my-1 ">
               ANISTAR
             </span>
           </Link>
@@ -86,7 +86,7 @@ export const HamburgerMenu = () => {
               className="flex flex-col items-start justify-start w-2/3 ml-5"
             >
               <Link to={link.url} onClick={() => setMenuOpen(false)}>
-                <span className="text-lg uppercase font-extralight my-1">
+                <span className="text-2xl uppercase font-extralight my-1">
                   {link.title}
                 </span>
               </Link>
@@ -97,7 +97,7 @@ export const HamburgerMenu = () => {
                     key={sublink.id}
                     onClick={() => setMenuOpen(false)}
                   >
-                    <span className="text-white text-lg uppercase font-extralight">
+                    <span className="text-white text-2xl uppercase font-extralight">
                       {sublink.title}
                     </span>
                   </Link>

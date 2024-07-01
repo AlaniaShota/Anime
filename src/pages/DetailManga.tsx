@@ -41,6 +41,7 @@ import { DetailAboutManga } from "./component/manga/DetailAboutManga";
 import { CharactersActors } from "./component/CharactersActors";
 import { SwitchButtonSection } from "../component/Button";
 import { DetailMangaSection } from "./component/manga/DetailMangaSection";
+import { useMobile } from "../component/Mobile";
 
 export const DetailManga: React.FC = () => {
   const { mangaTitle, characterId } = useParams<{
@@ -63,19 +64,7 @@ export const DetailManga: React.FC = () => {
   const pictureLoader = useSelector(selectPictureMangaLoading);
   const reviewsLoader = useSelector(selectReviewsMangaLoading);
   const [selectedTitle, setSelectedTitle] = useState<string>("A");
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 530);
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useMobile();
   useEffect(() => {
     if (characterId) {
       dispatch(fetchCharacterManga(characterId));

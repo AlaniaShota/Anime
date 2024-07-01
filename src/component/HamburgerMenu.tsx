@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { SearchBar } from "./Search";
@@ -44,9 +44,21 @@ export const HamburgerMenu = () => {
     dispatch(setIsSearching(true));
   };
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("scroll");
+    } else {
+      document.body.classList.remove("scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("scroll");
+    };
+  }, [menuOpen]);
+
   return (
-    <div className="top-2 right-2 p-4 m-auto z-100 fixed">
-      <div className="lg:hidden flex items-center ml-auto">
+    <div className=" sticky flex items-end w-full justify-end p-4 z-50">
+      <div className="lg:hidden flex items-center">
         <button onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? (
             <FaTimes size={30} color="white" />
@@ -56,11 +68,23 @@ export const HamburgerMenu = () => {
         </button>
       </div>
       {menuOpen && (
-        <div className=" top-16 left-0 w-full h-full fixed bg-[#232323] text-white flex flex-col items-center z-100">
+        <div className="fixed top-16 inset-0 bg-[#232323] text-white flex flex-col items-center py-10 gap-2 z-50">
           <SearchBar onSearch={handleSearch} device={menuOpen} />
-
+          <Link
+            to="/"
+            onClick={() => setMenuOpen(false)}
+            className="flex flex-col items-start justify-start w-2/3 ml-5"
+          >
+            {" "}
+            <span className="text-lg uppercase font-extralight my-1 ">
+              ANISTAR
+            </span>
+          </Link>
           {links.map((link) => (
-            <div key={link.id} className="flex flex-col items-center w-full">
+            <div
+              key={link.id}
+              className="flex flex-col items-start justify-start w-2/3 ml-5"
+            >
               <Link to={link.url} onClick={() => setMenuOpen(false)}>
                 <span className="text-lg uppercase font-extralight my-1">
                   {link.title}

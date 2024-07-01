@@ -22,7 +22,7 @@ export const Layout = () => {
   return (
     <>
       {isMobile ? <HamburgerMenu /> : <Navigation />}
-      <section className="py-24 max-sm:py-12">
+      <section className="py-24 max-sm:py-8">
         <Outlet />
       </section>
       <Footer />

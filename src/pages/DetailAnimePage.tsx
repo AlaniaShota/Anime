@@ -67,6 +67,19 @@ export const DetailAnimePage: React.FC = () => {
   const videoLoader = useSelector(selectVideoLoading);
   const reviewsLoader = useSelector(selectVideoLoading);
   const [selectedTitle, setSelectedTitle] = useState<string>("A");
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 530);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (characterId) {
@@ -133,32 +146,37 @@ export const DetailAnimePage: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-[640px] shadow-2xl relative ">
-        <video
-          src={animeVideo}
-          autoPlay
-          loop
-          className="w-full h-[640px] object-contain top-0 rounded-b-3xl  shadow-2xl"
-        ></video>
-        <div className="absolute bottom-0 w-full h-full bg-black rounded-b-3xl  bg-opacity-70">
-          <DetailHeaderSection selected={selectedAnime} />
+      {isMobile ? (
+        <DetailHeaderSection selected={selectedAnime} />
+      ) : (
+        <div className="w-full h-[640px] shadow-2xl relative">
+          <video
+            src={animeVideo}
+            autoPlay
+            loop
+            className="w-full h-[640px] object-contain top-0 rounded-b-3xl  shadow-2xl "
+          ></video>
+          <div className="absolute bottom-0 w-full h-full bg-black rounded-b-3xl  bg-opacity-70">
+            <DetailHeaderSection selected={selectedAnime} />
+          </div>
         </div>
-      </div>
-      <div className="m-auto p-auto w-11/12 flex flex-col">
-        <div className="flex flex-row items-start justify-start gap-8">
-          <div className=" my-5 w-1/3">
+      )}
+      <div className="m-auto p-auto w-11/12 flex flex-col ">
+        <div className="flex flex-row max-sm:flex-col items-start justify-start gap-8">
+          <div className=" my-5 max-sm:my-3 w-1/3 max-sm:w-full">
             <SwitchButtonSection
               selectedTitle={selectedTitle}
               setSelectedTitle={setSelectedTitle}
             />
             {renderComponent()}
-            <UserReview reviews={reviews} />
+            {!isMobile && <UserReview reviews={reviews} />}
           </div>
-          <div className=" my-5 w-4/6">
-            <div className="flex flex-col justify-center items-center w-full my-5">
+          <div className=" my-5 max-sm:my-3 w-4/6 max-sm:w-full">
+            <div className="flex flex-col justify-center items-center w-full ">
               <Trailer video={video} />
               <Episodes video={video} />
             </div>
+            {isMobile && <UserReview reviews={reviews} />}
           </div>
         </div>
       </div>

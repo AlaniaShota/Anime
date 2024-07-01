@@ -7,6 +7,10 @@ body {
   background-color: #232323;
 }
 
+body.scroll {
+  overflow: hidden;
+}
+
 * {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;

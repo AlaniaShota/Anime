@@ -20,11 +20,11 @@ export const PictureSection = ({ picture }) => {
 
   return (
     <>
-      <div className="flex flex-row flex-wrap justify-center items-center gap-2  mt-14">
+      <div className="flex flex-row flex-wrap justify-center items-center gap-2 max-sm:gap-3 max-sm:mx-4 mt-14 max-sm:mt-0">
         {picture.map((img, index) => (
           <div
             key={index}
-            className="flex w-48 h-60"
+            className="flex w-48 h-60 max-sm:w-full max-sm:h-full"
             onClick={() => openModal(img.webp.large_image_url)}
           >
             <img

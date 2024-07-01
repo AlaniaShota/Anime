@@ -34,7 +34,7 @@ export const UserReview = ({ reviews }) => {
         {reviews.slice(0, userReview).map((item) => (
           <div
             key={item.mal_id}
-            className="flex flex-col justify-start items-start text-white my-4 bg-[#3d3d3dc0] p-4 rounded-md shadow-lg"
+            className="flex flex-col justify-start items-start text-white my-4 bg-[#3d3d3dc0] p-4 max-sm:p-1 rounded-md shadow-lg"
           >
             <div className="flex flex-col  items-start">
               <div className="flex flex-row  items-center gap-2">

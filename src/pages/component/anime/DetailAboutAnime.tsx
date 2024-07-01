@@ -1,34 +1,9 @@
-// import React from "react";
-// import { Trailer } from "./Trailer";
-// import { Episodes } from "./Episodes";
-
-// export const DetailAboutAnime = ({ selectedAnime, video }) => (
-//   <div className="w-full text-white my-1 p-2 flex flex-col justify-start items-start">
-//     {selectedAnime?.synopsis && (
-//       <div className="font-extralight">
-//         <h1 className=" font-extralight text-lg">Synopsis</h1>
-//         <p className="">{selectedAnime.synopsis}</p>
-//       </div>
-//     )}
-//     {selectedAnime?.background && (
-//       <div className="pt-5 font-extralight">
-//         <h1>Background</h1>
-//         <p>{selectedAnime.background}</p>
-//       </div>
-//     )}
-//     {/* <div className="flex flex-col justify-center items-center w-full my-5">
-//       <Trailer video={video} />
-//       <Episodes video={video} />
-//     </div> */}
-//   </div>
-// );
-
 import React, { useState } from "react";
 import { ButtonReadMore } from "../../../component/Button";
 
 const MAX_WORDS = 35;
 
-export const DetailAboutAnime = ({ selectedAnime, video }) => {
+export const DetailAboutAnime = ({ selectedAnime }) => {
   const [showFullSynopsis, setShowFullSynopsis] = useState(false);
   const [showFullBackground, setShowFullBackground] = useState(false);
 
@@ -57,7 +32,7 @@ export const DetailAboutAnime = ({ selectedAnime, video }) => {
     : truncateText(selectedAnime?.background, MAX_WORDS);
 
   return (
-    <div className="w-full text-white my-1 p-2 gap-y-2 flex flex-col justify-start items-start">
+    <div className="w-full text-white my-1 p-2 max-sm:p-1 gap-y-2 max-sm:gap-y-1 flex flex-col justify-start items-start">
       {selectedAnime?.synopsis && (
         <>
           <h1 className="font-extralight px-2 text-lg">Synopsis</h1>
@@ -72,7 +47,7 @@ export const DetailAboutAnime = ({ selectedAnime, video }) => {
       {selectedAnime?.background && (
         <>
           <h1 className="font-extralight px-2 text-lg">Background</h1>
-          <div className="pt-5 font-extralight p-2  shadowStyle rounded-lg">
+          <div className=" font-extralight p-2 shadowStyle rounded-lg">
             <p>{backgroundText}</p>
             {selectedAnime?.background.split(" ").length > MAX_WORDS && (
               <ButtonReadMore

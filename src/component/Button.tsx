@@ -14,9 +14,9 @@ export const Button = () => (
 );
 
 export const SeeMoreButton = ({ showMore }) => (
-  <div className="flex justify-end items-center w-full my-5">
+  <div className="flex justify-end items-center w-full my-5 max-sm:my-3">
     <button
-      className="bg-[#0a66c2] px-4 py-2 cursor-pointer rounded-lg shadowStyle"
+      className="bg-[#0a66c2] px-4 max-sm:px-3 py-2 max-sm:py-1 cursor-pointer rounded-lg shadowStyle"
       onClick={showMore}
     >
       <span className="text-white text-center text-lg">See More</span>
@@ -39,7 +39,7 @@ export const ModalButton = ({ closeModal }) => (
 export const ButtonGoBack = ({ title, src }) => (
   <Link
     to={src}
-    className="border border-[#ffd700] rounded-md px-4 py-2 bg-transparent hover:bg-[#ffd700] text-[#ffd700]  hover:text-black transition duration-700 ease-in-out"
+    className="border border-[#ffd700] rounded-md px-4 py-2  max-sm:px-3 max-sm:py-1 bg-transparent hover:bg-[#ffd700] text-[#ffd700]  hover:text-black transition duration-700 ease-in-out"
   >
     <span className="text-lg font-bold">Back To {title}</span>
   </Link>
@@ -47,7 +47,10 @@ export const ButtonGoBack = ({ title, src }) => (
 
 export const ButtonReadMore = ({ toggle, show }) => (
   <div className="flex justify-center items-center my-2  bg-test-bg w-full h-full ">
-    <button onClick={toggle} className="text-white z-30  w-full h-full ">
+    <button
+      onClick={toggle}
+      className="text-white z-30 flex items-center justify-center max-sm:justify-end  w-full h-full "
+    >
       <p className="hover:scale-75 transition duration-700 ease-in-out font-semibold text-lg">
         {show ? "Show less" : "Read more"}
       </p>
@@ -58,7 +61,7 @@ export const ButtonReadMore = ({ toggle, show }) => (
 export const SwitchButtonSection = ({ selectedTitle, setSelectedTitle }) => (
   <div className="flex flex-row justify-start items-center gap-4 px-1">
     <button
-      className={`  px-4 py-2 ${
+      className={`px-4 py-2 max-sm:px-3 max-sm:py-1 ${
         selectedTitle === "A" ? "rounded-lg active" : "rounded-lg shadowStyle"
       }`}
       onClick={() => setSelectedTitle("A")}
@@ -66,7 +69,7 @@ export const SwitchButtonSection = ({ selectedTitle, setSelectedTitle }) => (
       <h1 className="text-white text-lg ">Score</h1>
     </button>
     <button
-      className={`  px-4 py-2 ${
+      className={`  px-4 py-2 max-sm:px-3 max-sm:py-1 ${
         selectedTitle === "B" ? "rounded-lg active" : "rounded-lg shadowStyle"
       }`}
       onClick={() => setSelectedTitle("B")}
@@ -74,7 +77,7 @@ export const SwitchButtonSection = ({ selectedTitle, setSelectedTitle }) => (
       <h1 className="text-white text-lg ">About</h1>
     </button>
     <button
-      className={`  px-4 py-2 ${
+      className={`px-4 py-2 max-sm:px-3 max-sm:py-1 ${
         selectedTitle === "C" ? "rounded-lg active" : "rounded-lg shadowStyle"
       }`}
       onClick={() => setSelectedTitle("C")}
@@ -100,17 +103,17 @@ const footerLink = [
 ];
 
 export const FooterButton = () => (
-  <div className="flex flex-row max-sm:flex-col justify-start items-center max-sm:items-start gap-6 my-6">
+  <div className="flex flex-row max-sm:flex-col justify-start items-center max-sm:items-start gap-6 max-sm:gap-3 my-6 max-sm:my-3">
     {footerLink.map((item) => (
       <Link
         target="_blank"
         to={item.href}
         style={{ backgroundColor: item.color }}
         key={item.id}
-        className={`text-lg py-2 rounded-3xl ${
+        className={`text-lg py-2 max-sm:py-1 rounded-3xl ${
           item.id === 1
-            ? "px-6 text-white shadowStyle"
-            : "px-4 text-black shadowStyle hover:text-white"
+            ? "px-6 max-sm:px-4 text-white shadowStyle"
+            : "px-4 max-sm:px-3 text-black shadowStyle hover:text-white"
         }`}
       >
         {item.title}

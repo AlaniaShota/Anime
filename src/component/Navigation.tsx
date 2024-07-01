@@ -52,7 +52,7 @@ export const Navigation = () => {
   return (
     <div className="flex flex-row justify-start items-start gap-8 py-4 mx-auto py-auto px-32 w-full z-50 fixed rounded-b-xl backdrop-blur-3xl">
       <Link
-        className="flex flex-row justify-start items-start w-auto gap-4 p-2"
+        className="flex flex-row justify-start items-start w-auto gap-4"
         to="/"
       >
         <span className="active:text-[#c8144d] text-lg uppercase font-extralight text-white cursor-pointer w-[100px]">
@@ -81,8 +81,7 @@ export const Navigation = () => {
         </div>
       ))}
 
-        <SearchBar onSearch={handleSearch} device="" />
-
+      <SearchBar onSearch={handleSearch} device="" />
     </div>
   );
 };

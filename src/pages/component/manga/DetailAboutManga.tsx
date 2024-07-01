@@ -31,7 +31,7 @@ export const DetailAboutManga = ({ selectedManga }) => {
     : truncateText(selectedManga?.background, MAX_WORDS);
 
   return (
-    <div className="w-full text-white my-1 p-2 gap-y-2 flex flex-col justify-start items-start">
+    <div className="w-full text-white my-1 p-2 max-sm:p-1 gap-y-2 max-sm:gap-y-1 flex flex-col justify-start items-start">
       {selectedManga?.synopsis && (
         <>
           <h1 className="font-extralight px-2 text-lg">Synopsis</h1>
@@ -46,7 +46,7 @@ export const DetailAboutManga = ({ selectedManga }) => {
       {selectedManga?.background && (
         <>
           <h1 className="font-extralight px-2 text-lg">Background</h1>
-          <div className="pt-5 font-extralight p-2  shadowStyle rounded-lg">
+          <div className="font-extralight p-2  shadowStyle rounded-lg">
             <p>{backgroundText}</p>
             {selectedManga?.background.split(" ").length > MAX_WORDS && (
               <ButtonReadMore

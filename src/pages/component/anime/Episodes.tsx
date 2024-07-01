@@ -14,7 +14,6 @@ const AnimationPulseError = ({ sizeW, sizeH }) => (
 );
 
 const EpisodeList = ({ video, visibleEpisodes, showMoreEpisodes }) => {
-  // Реверсируем массив эпизодов
   const sortedEpisodes = [...video.episodes].reverse();
 
   return (
@@ -33,7 +32,10 @@ const EpisodeList = ({ video, visibleEpisodes, showMoreEpisodes }) => {
 };
 
 const EpisodeItem = ({ episode }) => (
-  <div key={episode.mal_id} className="flex flex-col flex-wrap gap-3">
+  <div
+    key={episode.mal_id}
+    className="flex flex-col flex-wrap gap-3 max-sm:gap-1"
+  >
     {episode.images.jpg.image_url ? (
       <img
         src={episode.images.jpg.image_url}
@@ -43,7 +45,7 @@ const EpisodeItem = ({ episode }) => (
     ) : (
       <AnimationPulseError sizeW="60" sizeH="60" />
     )}
-    <h1>{episode.episode}</h1>
+    <h1 className="text-base max-sm:text-sm">{episode.episode}</h1>
   </div>
 );
 

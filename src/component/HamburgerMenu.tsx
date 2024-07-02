@@ -70,27 +70,23 @@ export const HamburgerMenu = () => {
       {menuOpen && (
         <div className="fixed top-16 inset-0 bg-[#232323] text-white flex flex-col items-center py-10 gap-2 z-50">
           <SearchBar onSearch={handleSearch} device={menuOpen} />
-          <Link
-            to="/"
-            onClick={() => setMenuOpen(false)}
-            className="flex flex-col items-start justify-start w-2/3 ml-5"
-          >
-            {" "}
-            <span className="text-2xl uppercase font-extralight my-1 ">
-              ANISTAR
-            </span>
-          </Link>
-          {links.map((link) => (
-            <div
-              key={link.id}
-              className="flex flex-col items-start justify-start w-2/3 ml-5"
-            >
-              <Link to={link.url} onClick={() => setMenuOpen(false)}>
-                <span className="text-2xl uppercase font-extralight my-1">
-                  {link.title}
-                </span>
-              </Link>
-              <div className="flex flex-col items-center">
+          <div className="flex justify-start  flex-col items-start max-sm:w-2/3 w-1/3">
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              {" "}
+              <span className="text-2xl uppercase font-extralight ">
+                ANISTAR
+              </span>
+            </Link>
+            {links.map((link) => (
+              <div
+                key={link.id}
+                className="flex flex-col items-start justify-start "
+              >
+                <Link to={link.url} onClick={() => setMenuOpen(false)}>
+                  <span className="text-2xl uppercase font-extralight">
+                    {link.title}
+                  </span>
+                </Link>
                 {link.src.map((sublink) => (
                   <Link
                     to={sublink.url}
@@ -103,8 +99,8 @@ export const HamburgerMenu = () => {
                   </Link>
                 ))}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -40,10 +40,9 @@ export const Manga = () => {
   if (error) return <ErrorCard />;
 
   return (
-    <div className="m-auto p-auto w-5/6 ">
-      <>
-        <CardList data={mangaData} type="manga" />
-      </>
+    <div className="m-auto p-auto w-5/6 max-lg:w-11/12">
+      <h1 className="text-2xl text-white my-3">Manga</h1>
+      <CardList data={mangaData} type="manga" />
       <Pagination handlePageChange={handlePageChange} />
     </div>
   );

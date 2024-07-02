@@ -50,7 +50,7 @@ export const Navigation = () => {
   };
 
   return (
-    <div className="flex flex-row justify-start items-start gap-8 py-4 mx-auto py-auto px-32 w-full z-50 fixed rounded-b-xl backdrop-blur-3xl">
+    <div className="flex flex-row justify-start items-start gap-8 py-4 mx-auto px-32  w-full z-50 fixed rounded-b-xl backdrop-blur-3xl">
       <Link
         className="flex flex-row justify-start items-start w-auto gap-4"
         to="/"

@@ -14,7 +14,7 @@ export const CardList: React.FC<CardListProps> = ({ data, type }) => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const isMobile = useMobile();
   return (
-    <div className="flex flex-row flex-wrap justify-center items-center gap-6 max-sm:gap-3">
+    <div className="flex flex-row flex-wrap justify-center max-sm:justify-center max-lg:justify-start items-center gap-6 max-lg:gap-3">
       {data?.map((item) => (
         <Link
           to={`/${type}/${item.title}/character/${item.mal_id}`}

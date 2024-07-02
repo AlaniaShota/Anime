@@ -1,6 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 
-// Create a context for the mobile state
 const MobileContext = createContext(false);
 
 export const useMobile = () => {
@@ -12,7 +11,7 @@ export const MobileProvider = ({ children }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 530);
+      setIsMobile(window.innerWidth <= 768);
     };
 
     handleResize();
@@ -23,8 +22,6 @@ export const MobileProvider = ({ children }) => {
   }, []);
 
   return (
-    <MobileContext.Provider value={isMobile}>
-      {children}
-    </MobileContext.Provider>
+    <MobileContext.Provider value={isMobile}>{children}</MobileContext.Provider>
   );
 };

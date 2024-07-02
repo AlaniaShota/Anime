@@ -26,10 +26,9 @@ export const TopAnime = () => {
   if (error) return <ErrorCard />;
 
   return (
-    <div className="m-auto p-auto w-5/6 ">
-      <>
-        <CardList data={topAnimeData} type="anime" />
-      </>
+    <div className="m-auto p-auto w-5/6 max-lg:w-11/12">
+      <h1 className="text-2xl text-white my-3">Top Anime</h1>
+      <CardList data={topAnimeData} type="anime" />
     </div>
   );
 };

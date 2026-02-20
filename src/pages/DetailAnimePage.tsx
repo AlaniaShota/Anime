@@ -41,7 +41,7 @@ import {
 import { DetailPageLoader } from "../component/Loader";
 import { useAppDispatch } from "../redux/store/store";
 import { ErrorDataFound, ErrorDetailTitle } from "../component/Error";
-import animeVideo from "../assets/videoAnime.mp4";
+import animeVideo from "../assets/This Is It [ AMV - Mix ] Anime Mix.mp4";
 import { SwitchButtonSection } from "../component/Button";
 import { CharactersActors } from "./component/CharactersActors";
 import { Trailer } from "./component/anime/Trailer";
@@ -96,7 +96,7 @@ export const DetailAnimePage: React.FC = () => {
         return animeData.find((item: Anime) => item?.title === animeTitle);
       case !!topAnimeData.find((item: TopAnime) => item?.title === animeTitle):
         return topAnimeData.find(
-          (item: TopAnime) => item?.title === animeTitle
+          (item: TopAnime) => item?.title === animeTitle,
         );
       default:
         return null;
@@ -107,7 +107,8 @@ export const DetailAnimePage: React.FC = () => {
 
   const filteredCharacterData = Array.isArray(characterData)
     ? characterData.filter(
-        (character) => character.character.mal_id !== characterDataId[0]?.mal_id
+        (character) =>
+          character.character.mal_id !== characterDataId[0]?.mal_id,
       )
     : [];
 

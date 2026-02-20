@@ -36,7 +36,7 @@ import { DetailPageLoader } from "../component/Loader";
 import { selectReviewsError } from "../redux/reducer/anime/reviewsSlice";
 import { useAppDispatch } from "../redux/store/store";
 import { ErrorDetailTitle } from "../component/Error";
-import mangaVideo from "../assets/Naruto vs Luffy _ manga animation.mp4";
+import mangaVideo from "../assets/Lose Control [ AMV - Mix ] Anime Mix.mp4";
 import { DetailAboutManga } from "./component/manga/DetailAboutManga";
 import { CharactersActors } from "./component/CharactersActors";
 import { SwitchButtonSection } from "../component/Button";
